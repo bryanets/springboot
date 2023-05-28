@@ -26,3 +26,7 @@ https://github.com/jorgejacinto9701/api_rest_sistema_biblioteca
 
 Monitor
 https://www.memorykings.pe/producto/327932/monitor-31-5-lg-32un500-4k-uhd-hdr10-amd-freesync
+
+
+
+hoy aprendimos a usar git 28 de mayor del 2023 

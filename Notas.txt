@@ -1,0 +1,28 @@
+el Nombre del proceso debe comenzar con un verbo 
+ejemplo: "encuestar"
+herramiento isagi
+
+modelado de negocios es conocer a la empresa antes de mepezar a programar
+entidades de negocio EN: documentos dentro del proceso
+Requerimiento: necesides del stakholder (un pedido del usuario, de acuerdo a una necesidad o problema a resolver)
+requisito funciona: lo que el sistema debe hacer
+requisito no funcional: lo que el sistema necesita para funcionar
+modela de negocio: conocer la empresa antes de programar
+rup: metodologia orientada a objetos
+aup
+
+iniciar el flujo con : El caso de uso se inicia con
+
+-----------------------------------------------------------
+
+https://github.com/jorgejacinto9701/MOVIL-Sesion04Finalizado-PC01/blob/master/app/src/main/java/com/cibertec/semana04/entity/Editorial.java
+
+https://github.com/jorgejacinto9701/movil_20231_sabado_grupo_07
+
+https://github.com/jorgejacinto9701/api_rest_sistema_biblioteca
+
+
+987168543 prosegur
+
+Monitor
+https://www.memorykings.pe/producto/327932/monitor-31-5-lg-32un500-4k-uhd-hdr10-amd-freesync

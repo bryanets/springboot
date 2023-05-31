@@ -1,5 +1,7 @@
 package com.hv.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -27,6 +30,18 @@ public class Curso {
 	@ManyToOne
 	@JoinColumn(name="codCiclo")
 	private Ciclo ciclo;
+	
+	@OneToMany
+	@JoinColumn(name="cod_HS")
+	private List<HorarioSeccion> listaHorario;
+	
+	public List<HorarioSeccion> getListaHorario() {
+		return listaHorario;
+	}
+
+	public void setListaHorario(List<HorarioSeccion> listaHorario) {
+		this.listaHorario = listaHorario;
+	}
 
 	public Integer getCodigo() {
 		return codigo;

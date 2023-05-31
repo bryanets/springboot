@@ -26,7 +26,7 @@ public class SecurityConfig {
         http.csrf().disable().authorizeHttpRequests()
                 .requestMatchers("/usuario/**").permitAll()
                 .and().authorizeHttpRequests()
-                .requestMatchers("/curso/**")
+                .requestMatchers("/curso/**","/horario/**")
                 .authenticated().and()
                 .formLogin(login -> login.loginPage("/usuario/validar")
                         .defaultSuccessUrl("/usuario/intranet"));

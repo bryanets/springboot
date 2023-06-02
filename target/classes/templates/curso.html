@@ -62,13 +62,13 @@
 
 		<h3 class="text-center mt-4">LISTA DE CURSOS</h3>
 
-		<button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#modalCurso"
+		<button type="button" class="btn btn-primary my-3" data-bs-toggle="modal" data-bs-target="#modalCurso"
 			id="btn-nuevo">
 			<i class="far fa-file"></i> Nuevo Curso
 		</button>
 		<div class=" mt-2">
 
-			<table class="table table-striped table-bordered mt-5" id="tableCurso">
+			<table class="table table-striped table-bordered  shadow" id="tableCurso">
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -146,7 +146,7 @@
 							<div class="col-md-12 text-center mt-4">
 								<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i>
 									Grabar</button>
-								<button type="button" id="btn-cerrar" class="btn btn-danger" data-dismiss="modal"><i
+								<button type="button" id="btn-cerrar" class="btn btn-danger" data-bs-dismiss="modal"><i
 										class="fas fa-undo-alt"></i> Cancelar</button>
 							</div>
 						</form>
@@ -196,7 +196,7 @@
 				$("#idNombre").val(response.nombre);
 				$("#idCreditos").val(response.creditos);
 				$("#idHoras").val(response.horas);
-				$("#idCiclo").val(response.ciclo.nombre);
+				$("#idCiclo").val(response.ciclo.codigo);
 				$("#idCiclo").trigger("change");
 				codigoCiclo = response.ciclo.codigo;
 				console.log(response);

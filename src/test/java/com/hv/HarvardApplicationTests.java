@@ -26,10 +26,10 @@ class HarvardApplicationTests {
 
 	@Test
 	void contextLoads() {
-		//System.out.println("Clave es :" + encoder.encode("123"));
+		System.out.println("Clave es :" + encoder.encode("123"));
 		//servis.listarCursos();
 		//System.out.println(servis.listarCursos());
-		System.out.println(ciclo.listarCiclos());
+		//System.out.println(ciclo.listarCiclos());
 
 	}
 

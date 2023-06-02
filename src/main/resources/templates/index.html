@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="plantilla/UITemplate :: cabecera">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Intranet</title>
+</head>
+
+<body style="background-image: linear-gradient(to bottom, #720000, #69001f, #560031, #3b073b, #1a113b);">
+
+	<div th:insert="plantilla/UITemplate :: menu"></div>
+
+	<div class="container-fluid">
+		<div class="col-md-12 text-center">
+			<img src="https://lh3.googleusercontent.com/proxy/iUfI4SsZ5v-BfIFWB0vpOwJN-WZjjnze_HU0ihOpyuP9hsK1QyT75R035SMFkiv_L9b1w8YhYmzhDLLuyx6hGmw01LPseBQn4dQc3WscAIOaDYqjHpQBPGkATOD2dn9lndaUJKPEDgL_vO-SowbMa56YrpNsL-NlBKYEZVkI_-dJYJAWpuImoDNMUsdhQakL1L2PrnCyoiSiP8GZ3BofUEqlP0WB4-k9wYUjzD4UIxmORYFYXQjZCTenLF8Ne-k=w1200-h630-p-k-no-nu"
+				class="img-fluid w-75">
+		</div>
+	</div>
+
+	<div class="container">
+		<div class="row mt-4">
+			<div class="col-md-4 shadow">
+				<div class="card">
+					<img src="https://th.bing.com/th/id/OIP.kOXWRZBB3lgULE2nTP-S7gHaFj?pid=ImgDet&rs=1" alt="Student Image 1"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Student 1</h5>
+						<p class="card-text">This is the first student with some description.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow">
+					<img src="https://th.bing.com/th/id/OIP.EbK495t_TxyJ2UUAN8TlsgHaE6?pid=ImgDet&w=527&h=350&rs=1" alt="Student Image 2"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Student 2</h5>
+						<p class="card-text">This is the second student with some description.</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow">
+					<img src="https://th.bing.com/th/id/R.0e4268716b4743bc00adb06554264c09?rik=XRNNqePFsrb0BA&riu=http%3a%2f%2fimg.scoop.it%2fpM1rAVnrgSolIDConTsirzl72eJkfbmt4t8yenImKBXEejxNn4ZJNZ2ss5Ku7Cxt&ehk=AEGGjhe7ZcGcBX09CyeWH97mC7ev2%2fMFcN%2bUNvmbqEc%3d&risl=&pid=ImgRaw&r=0" alt="Student Image 3"
+						class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">Student 3</h5>
+						<p class="card-text">This is the third student with some description.</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+</body>
+
+</html>

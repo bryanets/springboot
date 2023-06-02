@@ -1,6 +1,6 @@
 package com.hv.entity;
 
-import java.util.List;
+//import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+//import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,9 +28,9 @@ public class Curso {
 	private int horas;
 	
 	@ManyToOne
-	@JoinColumn(name="codCiclo")
+	@JoinColumn(name="cod_ciclo")
 	private Ciclo ciclo;
-	
+	/*
 	@OneToMany
 	@JoinColumn(name="cod_HS")
 	private List<HorarioSeccion> listaHorario;
@@ -42,7 +42,7 @@ public class Curso {
 	public void setListaHorario(List<HorarioSeccion> listaHorario) {
 		this.listaHorario = listaHorario;
 	}
-
+*/
 	public Integer getCodigo() {
 		return codigo;
 	}
@@ -82,6 +82,7 @@ public class Curso {
 	public void setCiclo(Ciclo ciclo) {
 		this.ciclo = ciclo;
 	}
+
 	
 	
 }

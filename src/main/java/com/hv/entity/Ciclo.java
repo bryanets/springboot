@@ -18,9 +18,9 @@ public class Ciclo {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="codCiclo")
+	@Column(name="cod_ciclo")
 	private Integer codigo;
-	@Column(name="nomCiclo")
+	@Column(name="nom_ciclo")
 	private String nombre;
 	
 	@OneToMany(mappedBy = "ciclo")

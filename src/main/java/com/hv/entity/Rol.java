@@ -14,6 +14,7 @@ public class Rol {
 	@Column(name = "idrol")
 	private int codigo;
 	private String descripcion;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy = "rol")
 	private List<Usuario> listaUsuario;

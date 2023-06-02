@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.hv.entity.Enlace;
 import com.hv.entity.Rol;
 import com.hv.entity.Usuario;
+import com.hv.services.RolService;
 import com.hv.services.UsuarioServices;
 
 @SessionAttributes({ "datos", "enlaces" })
@@ -25,11 +26,20 @@ import com.hv.services.UsuarioServices;
 public class UsuarioController {
 	@Autowired
 	private UsuarioServices servicio;
+	
+	@Autowired
+	private RolService rolService;
 
 	@RequestMapping("/validar")
 	public String index() {
 
 		return "login";
+	}
+	
+	@RequestMapping("/index")
+	public String home() {
+
+		return "index";
 	}
 
 	@RequestMapping("/intranet")
@@ -46,7 +56,7 @@ public class UsuarioController {
 	public String guardar(@RequestParam("codigo") Integer cod, @RequestParam("nombre") String nom,
 			@RequestParam("apellido") String ape, @RequestParam("dni") String dni, @RequestParam("celular") String cel,
 			@RequestParam("edad") int edad, @RequestParam("email") String email, @RequestParam("sexo") String sexo,
-			@RequestParam("login") String login, RedirectAttributes redirect) {
+			@RequestParam("login") String login,@RequestParam("rol") int rol, RedirectAttributes redirect) {
 
 		System.out.println("ni esta saliendo creo");
 
@@ -64,7 +74,7 @@ public class UsuarioController {
 			usu.setSexo(sexo);
 
 			Rol r = new Rol();
-			r.setCodigo(3);
+			r.setCodigo(rol);
 			usu.setRol(r);
 
 			servicio.Guardar(usu);
@@ -81,9 +91,42 @@ public class UsuarioController {
 		return "redirect:/usuario/lista";
 	}
 
+	@RequestMapping("/solicitante")
+	public String guardarSolicitante(@RequestParam("codigo") Integer cod, @RequestParam("nombre") String nom,
+			@RequestParam("apellido") String ape, @RequestParam("dni") String dni, @RequestParam("celular") String cel,
+			@RequestParam("edad") int edad, @RequestParam("email") String email, @RequestParam("sexo") String sexo,
+			@RequestParam("login") String login,@RequestParam("rol") int rol, RedirectAttributes redirect) {
+
+
+		try {
+
+			Usuario usu = new Usuario();
+			usu.setCodigo(cod);
+			usu.setLogin(login);
+			usu.setNombre(nom);
+			usu.setApellido(ape);
+			usu.setDni(dni);
+			usu.setCelular(cel);
+			usu.setEdad(edad);
+			usu.setEmail(email);
+			usu.setSexo(sexo);
+
+			Rol r = new Rol();
+			r.setCodigo(rol);
+			usu.setRol(r);
+
+			servicio.Guardar(usu);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "redirect:/usuario/index";
+	}
+	
 	@GetMapping("/lista")
 	public String index(Model model) {
 		model.addAttribute("listaUsuarios",servicio.listarTodos());
+		model.addAttribute("listaRol",rolService.listarRol());
 		return "mantenimientoUsuario";
 	}
 	

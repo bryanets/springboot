@@ -1,5 +1,7 @@
 package com.hv.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -66,6 +68,7 @@ public class CursoController {
 	public Curso buscarPorID(@RequestParam("codigo") Integer cod) {
 		return serCurso.buscarPorID(cod);
 	}
+	
 	
 	@RequestMapping("/eliminar")
 	public String eliminarPorID(@RequestParam("codigo") Integer cod,

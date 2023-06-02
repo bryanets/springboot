@@ -13,7 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import com.hv.security.SecurityInfo;
 
-import static org.springframework.security.config.Customizer.withDefaults;
+
+
 
 @Configuration
 @EnableWebSecurity
@@ -24,9 +25,9 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeHttpRequests()
-                .requestMatchers("/usuario/**").permitAll()
+                .requestMatchers("/usuario/**","/curso/**").permitAll()
                 .and().authorizeHttpRequests()
-                .requestMatchers("/curso/**","/horario/**")
+                .requestMatchers("/curso/**","/horario/**","/registroUsuario/**","/mantenimientoUsuario", "/mantenimientoNotas")
                 .authenticated().and()
                 .formLogin(login -> login.loginPage("/usuario/validar")
                         .defaultSuccessUrl("/usuario/intranet"));
@@ -42,7 +43,6 @@ public class SecurityConfig {
 		return new SecurityInfo();
 	}
 	
-	//método(resgistrado en el contenedor del spring) para registrar el uso de encriptar claves
 	@Bean
 	public BCryptPasswordEncoder encriptador() {
 		return new BCryptPasswordEncoder();

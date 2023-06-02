@@ -16,5 +16,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
 	//tb_enlace e on e.idenlace=re.idenlace where re.idrol=2;
 	@Query("select e from RolEnlace re join re.enlace e where re.rol.codigo=?1")
 	public List<Enlace> traerEnlacesDelUsuario(int codigoRol);
-	
+	// Esto sirve para el login
 }

@@ -21,6 +21,18 @@ public class UsuarioServices {
 		return repo.traerEnlacesDelUsuario(codRol);
 	}
 	
+	public void Guardar (Usuario usuario) {
+		 repo.save(usuario);
+	}
+	public List<Usuario> listarTodos(){
+		return repo.findAll();
+	}
+	public void eliminarPorID(Integer cod) {
+		repo.deleteById(cod);
+	}
+	public Usuario buscarPorID(Integer cod) {
+		return repo.findById(cod).orElse(null);
+	}
 }
 
 

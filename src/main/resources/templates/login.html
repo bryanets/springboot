@@ -34,13 +34,15 @@
 						<button type="submit" class="btn mx-5 mb-1 fw-bold b" style="background: aqua;">Iniciar
 							sesión</button>
 				</form>
-				<a href="#" class="text-decoration-none text-dark">¿Olvidaste tu contraseña?</a>
+				<a href="#" class="text-decoration-none text-dark">¿Olvidaste tu
+					contraseña?</a>
 				<div class="border-bottom my-3 mx-5 border-dark"></div>
-				<button type="button" class="btn mx-5 mb-1 b" style="background: rgb(120, 252, 186);"
-					data-bs-toggle="modal" data-bs-target="#staticBackdrop">Registrarse</button>
+				<a href="#" class="btn mx-5 mb-1 b" th:href="@{/usuario/registroUsuario}"
+					style="background: rgb(120, 252, 186);">Registrarse</a>
 			</div>
+			<!---->
+
 		</div>
-		<!---->
 		<div class="col-lg-6 d-none d-lg-block text-center bg-white rounded-end">
 			<img src="https://cdn.freebiesupply.com/images/large/2x/harvard-logo-transparent.png"
 				class="img-fluid img-size">
@@ -48,25 +50,6 @@
 	</div>
 
 
-	<!-- Modal -->
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-		aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		<div class="modal-dialog modal-dialog-centered">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					...
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Understood</button>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<div class="alert-container" th:if="${param.error}">
 		<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -74,8 +57,8 @@
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
 		</div>
 	</div>
-	
-		<div class="alert-container" th:if="${param.logout}">
+
+	<div class="alert-container" th:if="${param.logout}">
 		<div class="alert alert-info alert-dismissible fade show" role="alert">
 			Sesión terminada
 			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
@@ -83,6 +66,16 @@
 	</div>
 
 	<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+
+	<script th:inline="javascript" th:if="${MENSAJE!=null}">
+		let msj;
+		msj =/*[[${MENSAJE}]]*/
+			toastr.success(msj, toastr.options = {
+				"timeOut": "2000",
+				"positionClass ": " toast-top-right ",
+			});
+	</script>
 </body>
 
 <style>

@@ -24,9 +24,9 @@ public class HorarioSeccionController {
 	private CursoServices serCurso;
 	
 	@RequestMapping("/lista")
-	public String index(/*Model model*/) {
-		/*model.addAttribute("listaCursos",serCurso.listarCursos());
-		model.addAttribute("listaHorario",serHora.listarTodo());*/
+	public String index(Model model) {
+		model.addAttribute("listaCursos",serCurso.listarCursos());
+		model.addAttribute("listaHorario",serHora.listarTodo());
 		return "horario";
 	}
 	
@@ -62,8 +62,8 @@ public class HorarioSeccionController {
 	
 	@RequestMapping("/buscar")
 	@ResponseBody
-	public Curso buscarPorID(@RequestParam("codigo") Integer cod) {
-		return serCurso.buscarPorID(cod);
+	public HorarioSeccion buscarPorID(@RequestParam("codigo") Integer cod) {
+		return serHora.buscarPorId(cod);
 	}
 	
 	

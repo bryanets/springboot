@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
 
-<head th:insert="plantilla/UITemplate :: cabecera">
+<head th:insert="~{plantilla/UITemplate :: cabecera}">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Intranet</title>
@@ -9,7 +9,7 @@
 
 <body>
 
-	<div th:insert="plantilla/UITemplate :: menu"></div>
+	<div th:insert="~{plantilla/UITemplate :: menu}"></div>
 
 
 
@@ -68,8 +68,8 @@
 		</div>
 
 		<!-- begin #modal-dialog : MODAL USUARIO-->
-		<div class="modal fade" id="modalUsuario" data-backdrop="static" data-keyboard="false" tabindex="-1"
-			aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal fade" id="modalUsuario" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+			aria-labelledby="staticBackdropLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-login modal-lg">
 				<div class="modal-content">
 					<div class="modal-header bg-blue-darker">
@@ -80,7 +80,8 @@
 							<div class="row">
 								<div class="mb-3 col-md-6" hidden>
 									<label for="codigo" class="form-label">codigo</label>
-									<input type="text" class="form-control" id="idCodigo" name="codigo" value="0" readonly>
+									<input type="text" class="form-control" id="idCodigo" name="codigo" value="0"
+										readonly>
 								</div>
 								<div class="mb-3 col-md-6" hidden>
 									<label for="pas" class="form-label">pas</label>
@@ -89,10 +90,6 @@
 								<div class="mb-3 col-md-6">
 									<label for="login" class="form-label">login</label>
 									<input type="text" class="form-control" id="idLogin" name="login">
-								</div>
-								<div class="mb-3 col-md-6" hidden>
-									<label for="login" class="form-label">password</label>
-									<input type="text" class="form-control" id="idPassword" name="password">
 								</div>
 								<div class="mb-3 col-md-6">
 									<label for="nombre" class="form-label">Nombre</label>
@@ -138,8 +135,9 @@
 										<option value="femenino">Femenino</option>
 									</select>
 								</div>
-								<button type="submit" class="btn btn-primary " id="submitBtn">Guardar</button>
-								<button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+								<button type="submit" class="btn btn-primary" id="submitBtn">Guardar</button>
+								<button type="button" class="btn btn-danger my-2" data-bs-dismiss="modal"
+									id="btnCancelar">Cancelar</button>
 						</form>
 					</div>
 
@@ -156,7 +154,7 @@
 
 	</div>
 
-	<div th:insert="plantilla/UITemplate :: javascript"></div>
+	<div th:insert="~{plantilla/UITemplate :: javascript}"></div>
 	<script th:inline="javascript" th:if="${MENSAJE!=null}">
 		let msj;
 		msj =/*[[${MENSAJE}]]*/
@@ -212,6 +210,14 @@
 			})
 
 		})
+
+		//Limpia el formulario cuando se cancela
+		$(document).ready(function () {
+			$('#btnCancelar').click(function () {
+				$('#idRegistra')[0].reset();
+			});
+		});
+
 		//asignar evento click al botÃ³n con ID "btn-cerrar"
 		$(document).on("click", "#btn-cerrar", function () {
 			//resetear el formulario

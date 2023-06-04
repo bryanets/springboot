@@ -29,7 +29,8 @@ public class UsuarioController {
 	
 	@Autowired
 	private RolService rolService;
-
+	
+	
 	@RequestMapping("/validar")
 	public String index() {
 
@@ -37,8 +38,9 @@ public class UsuarioController {
 	}
 	
 	@RequestMapping("/index")
-	public String home() {
-
+	public String home(Model model) {
+        model.addAttribute("datos", "valor de datos");
+        model.addAttribute("enlaces", "valor de enlaces");
 		return "index";
 	}
 
@@ -53,7 +55,7 @@ public class UsuarioController {
 	}
 
 	@RequestMapping("/guardar")
-	public String guardar(@RequestParam("codigo") Integer cod, @RequestParam("nombre") String nom,
+	public String guardar(@RequestParam("codigo") Integer cod, @RequestParam("nombre") String nom,@RequestParam("pas") String pas,
 			@RequestParam("apellido") String ape, @RequestParam("dni") String dni, @RequestParam("celular") String cel,
 			@RequestParam("edad") int edad, @RequestParam("email") String email, @RequestParam("sexo") String sexo,
 			@RequestParam("login") String login,@RequestParam("rol") int rol, RedirectAttributes redirect) {
@@ -65,6 +67,7 @@ public class UsuarioController {
 			Usuario usu = new Usuario();
 			usu.setCodigo(cod);
 			usu.setLogin(login);
+			usu.setClave(pas);
 			usu.setNombre(nom);
 			usu.setApellido(ape);
 			usu.setDni(dni);

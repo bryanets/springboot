@@ -1,10 +1,7 @@
 package com.hv.entity;
 
-import java.util.List;
-
 import jakarta.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tb_usuario")

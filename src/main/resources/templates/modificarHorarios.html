@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="plantilla/UITemplate :: cabecera">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Intranet</title>
+
+</head>
+
+<body>
+
+	<form method="POST" id="idRegistra" th:action="@{/horario/grabar}" th:object="${horarios}">
+		<div class="container">
+			<div class="form-group">
+				<label for="idCodigo"><b>Código</b></label>
+				<input type="text" class="form-control" id="idCodigo" name="codigo" th:field="*{idHorario}" readonly>
+			</div>
+			<div class="form-group has-feedback col-md-12">
+				<label for="idNombre"><b>Dia de la semana</b></label>
+				<input type="text" class="form-control" id="idDiaSemana" name="diaSemana" th:field="*{diaSemana}" required>
+			</div>
+			<div class="form-group has-feedback">
+				<label for="idCreditos"><b>Hora Inicio</b></label>
+				<input type="time" class="form-control" id="idHInicio" name="HInicio" th:field="*{horaInicio}">
+			</div>
+			<div class="form-group has-feedback">
+				<label for="idCreditos"><b>Hora Fin</b></label>
+				<input type="time" class="form-control" id="idHFin" name="HFin" th:field="*{horaFin}">
+			</div>
+			<div class="form-group has-feedback">
+				<label for="idCreditos"><b>Aula</b></label>
+				<input type="text" class="form-control" id="idAula" name="aula" th:field="*{aula}">
+			</div>
+			<div class="form-group">
+				<label for="idCarrera"><b>Curso</b></label><br>				
+				<select class="form-control" id="idCurso" name="curso" th:field="*{curso}">
+					<option value=" ">[Seleccione curso]</option>
+					<option th:each="row:${cursos}" th:utext="${row.nombreCurso}" th:value="${row.id_curso}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="col-md-12 text-center mt-4">
+			<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i>
+				Grabar</button>
+			<a type="button" id="btn-cerrar" class="btn btn-danger" th:href="@{/horario/lista}"><i
+					class="fas fa-undo-alt"></i> Cancelar</a>
+		</div>
+	</form>
+
+	<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+</body>
+
+</html>

@@ -5,32 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.hv.dao.CursoRepository;
-import com.hv.entity.Curso;
+import com.hv.dao.CursosRepository;
+import com.hv.entity.Cursos;
 
 @Service
 public class CursoServices {
 
 	@Autowired
-	private CursoRepository repo;
+	private CursosRepository repo;
 	
-	public void registrar(Curso c) {
+	public void registrar(Cursos c) {
 		repo.save(c);
 	}
 	
-	public void actualizar(Curso c) {
+	public void actualizar(Cursos c) {
 		repo.save(c);
 	}
 	
-	public void eliminarPorID(Integer cod) {
-		repo.deleteById(cod);
+	public void eliminar(Cursos cursos) {
+		repo.delete(cursos);
 	}
 	
-	public Curso buscarPorID(Integer cod) {
-		return repo.findById(cod).orElse(null);
+	public Cursos buscar(Cursos cursos) {
+		return repo.findById(cursos.getId_curso()).orElse(null);
 	}
 	
-	public List<Curso> listarCursos(){
+	public List<Cursos> listarCursos(){
 		return repo.findAll();
 	}
+	
 }

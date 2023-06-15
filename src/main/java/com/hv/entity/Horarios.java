@@ -18,7 +18,11 @@ public class Horarios {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_horario")
+<<<<<<< HEAD
     private Long idHorario;
+=======
+    private Integer idHorario;
+>>>>>>> 73f1c24056b4412a17db45dc06726d581919b922
     @Column(name = "dia_semana")
     private String diaSemana;
     @Column(name = "hora_inicio")
@@ -33,11 +37,21 @@ public class Horarios {
     @JoinColumn(name = "id_curso")
     private Cursos curso;
 
+<<<<<<< HEAD
 	public Long getIdHorario() {
 		return idHorario;
 	}
 
 	public void setIdHorario(Long idHorario) {
+=======
+	
+
+	public Integer getIdHorario() {
+		return idHorario;
+	}
+
+	public void setIdHorario(Integer idHorario) {
+>>>>>>> 73f1c24056b4412a17db45dc06726d581919b922
 		this.idHorario = idHorario;
 	}
 

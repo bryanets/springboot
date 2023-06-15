@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="plantilla/UITemplate :: cabecera">
 <meta charset="ISO-8859-1">
-<title>Horario y Seccion</title>
+<title>Medicamento</title>
 
 
 
@@ -13,14 +13,14 @@
 	
 	<div class="container">
 		
-			<h3 class="text-center mt-4">LISTA DE HORARIO Y SECCION</h3>
+			<h3 class="text-center mt-4">LISTA DE MEDICAMENTOS</h3>
 			
 			<button type="button" class="btn btn-primary mt-5" data-toggle="modal" data-target="#modalHorario" id="btn-nuevo">
-			 <i class="far fa-file"></i> Nuevo Horario
+			 <i class="far fa-file"></i> Horario y Seccion
 			</button>
 			<div class=" mt-2">
 	
-				<table class="table table-striped table-bordered mt-5" id="tableHorarios">
+				<table class="table table-striped table-bordered mt-5" id="tableMedicamentos">
 							  <thead>
 							   <tr>
 					                <th>Código</th>
@@ -54,7 +54,7 @@
 						<div class="modal-dialog modal-dialog-centered modal-login modal-lg" >					
 							<div class="modal-content">
 								<div class="modal-header bg-blue-darker">
-									<h4 class="modal-title text-white">Horario y Seccion</h4>
+									<h4 class="modal-title text-white">Horario</h4>
 								</div>
 								<div class="modal-body">
 									<form method="POST" id="idRegistra" action="/horario/grabar">	
@@ -68,8 +68,8 @@
 												</div>
 												<div class="form-group has-feedback col-md-12">
 														<label for="exampleInputEmail1"><b>Seccion</b></label><br>
-														<textarea class="form-control" id="idSeccion" rows="6" name="seccion" 
-																					   placeholder="Ingresar seccion" style="padding-left: 5px!important;"></textarea>												
+														<input type="text" class="form-control" id="idSeccion" rows="6" name="seccion" 
+																					   placeholder="Ingresar seccion" style="padding-left: 5px!important;"></input>												
 												</div>
 												<div class="form-group has-feedback col-md-4">
 													<label for="exampleInputEmail1"><b>Dia</b></label><br>	
@@ -89,7 +89,6 @@
 													    </select>
 													   
 												 </div>
-
 												 
 												 
 												 
@@ -115,7 +114,7 @@
 	
 	</div>
 	
-	<div th:insert="plantilla/UITemplate :: java"></div>
+	<div th:insert="plantilla/UITemplate :: javascript"></div>
 	
 	
 	<script th:inline="javascript" th:if="${MENSAJE!=null}">
@@ -131,9 +130,9 @@
 	
 	
 	<script>
-		let codigoCurso=-1;
+		let cod_curso	=-1;
 		
-		$('#tableHorarios').DataTable();
+		$('#tableMedicamentos').DataTable();
 		$(function() {
 			$('#usr1').datepicker({
 				'format': 'yyyy-mm-dd',
@@ -144,25 +143,26 @@
 		$('#usr1').on('changeDate show', function(e) {
 		    $('#idRegistra').bootstrapValidator('revalidateField', $('#usr1'));
 		});
-
+	
 	//asignar evento click a todos los botones con nombre de clase "btn-editar"
-	$(document).on("click",".btn-editar",function(){
-		//variable
-		let cod;
-		//obtener el código del medicamento según el botón editar que se pulsó
-		cod=$(this).parents("tr").find("td")[0].innerHTML;
-		//función get de JQUERY lee una ruta que retorna un JSON
-		$.get("/horario/buscar?codigo="+cod,function(response){
-			//mostrar en los controles los valores de la response
-			$("#idCodigo").val(response.codigo);
-			$("#idHorario").val(response.horario);
-			$("#idSeccion").val(response.seccion);
-			$("#idDia").val(response.dia);
-			$("#idCurso").val(response.curso.codigo);
-			codigoCurso=response.curso.codigo;
+	$(document).on("click", ".btn-editar", function () {
+			//variable
+			let cod;
+			//obtener el cÃ³digo del medicamento segÃºn el botÃ³n editar que se pulsÃ³
+			cod = $(this).parents("tr").find("td")[0].innerHTML;
+			//funciÃ³n get de JQUERY lee una ruta que retorna un JSON
+			$.get("/horario/buscar?codigo=" + cod, function (response) {
+				//mostrar en los controles los valores de la response
+				$("#idCodigo").val(response.codigo);
+				$("#idHorario").val(response.horario);
+				$("#idSeccion").val(response.seccion);
+				$("#idDia").val(response.dia);
+				$("#idCurso").val(response.curso.codigo);	
+
+				console.log(response);
+			})
+
 		})
-		
-	})
 	//asignar evento click al botón con ID "btn-cerrar"
 	$(document).on("click","#btn-cerrar",function(){
 		//resetear el formulario
@@ -191,6 +191,23 @@
 		  set('labels', {ok:'Si', cancel:'No'});
 	})
 
+	//asignar evento change al combo con atributo ID "idLaboratorio"
+	$(document).on("change","#idLaboratorio",function(){
+		//obtener código del laboratorio actual
+		let cod;
+		cod=$(this).val();
+		//limpiar combo tipo
+		$("#idTipo").empty().append("<option value=' '>[Seleccione Tipo medicamento]</option>");
+		$.get("/medicamento/listarPorLaboratorio?codLab="+cod,function(response){
+			//console.log(response);
+			//bucle
+			$.each(response,function(i,e){			
+				$("#idTipo").append("<option value='"+e.codigo+"'>"+e.nombre+"</option>");	
+			})
+			//asignar tipo de medicamento
+			$("#idTipo").val(codigoTipo);
+		})
+	})
 	
 
 	</script>

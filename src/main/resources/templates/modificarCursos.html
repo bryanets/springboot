@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="plantilla/UITemplate :: cabecera">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Intranet</title>
+
+</head>
+
+<body>
+
+	<form method="POST" id="idRegistra" th:action="@{/curso/grabar}" th:object="${cursos}">
+		<div class="container">
+			<div class="form-group">
+				<label for="idCodigo"><b>Código</b></label>
+				<input type="text" class="form-control" id="idCodigo" name="codigo" th:field="*{id_curso}" readonly>
+			</div>
+			<div class="form-group has-feedback col-md-12">
+				<label for="idNombre"><b>Nombre</b></label>
+				<input type="text" class="form-control" id="idNombre" name="nombre" th:field="*{nombreCurso}" required>
+			</div>
+			<div class="form-group has-feedback">
+				<label for="idCreditos"><b>Créditos</b></label>
+				<input type="number" class="form-control" id="idCreditos" name="creditos" th:field="*{creditos}">
+			</div>
+			<div class="form-group">
+				<label for="idCarrera"><b>Carrera</b></label><br>				
+				<select class="form-control" id="idCarrera" name="carrera" th:field="*{carrera}">
+					<option value=" ">[Seleccione carrera]</option>
+					<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}" th:value="${row.idCarrera}" />
+				</select>
+
+			</div>
+						<div class="form-group">
+				<label for="idProfesor"><b>Profesor</b></label><br>				
+				<select class="form-control" id="idProfesor" name="profesor" th:field="*{profesor}">
+					<option value=" ">[Seleccione Profesor]</option>
+					<option th:each="row:${profesores}" th:utext="${row.usuario.nombre}" th:value="${row.idProfesor}" />
+				</select>
+
+			</div>
+		</div>
+		<div class="col-md-12 text-center mt-4">
+			<button type="submit" id="Guardar" class="btn btn-primary"><i class="fas fa-save"></i>
+				Grabar</button>
+			<a type="button" id="btn-cerrar" class="btn btn-danger" th:href="@{/curso/lista}"><i
+					class="fas fa-undo-alt"></i> Cancelar</a>
+		</div>
+	</form>
+
+	<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+</body>
+
+</html>

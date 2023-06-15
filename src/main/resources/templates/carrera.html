@@ -4,7 +4,7 @@
 <head th:insert="plantilla/UITemplate :: cabecera">
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Cursos</title>
+	<title>Carreras</title>
 	<style>
 		.modal-header {
 			color: #fff;
@@ -60,34 +60,32 @@
 
 	<div class="container">
 
-		<h3 class="text-center mt-4">LISTA DE CURSOS</h3>
-		<a type="button" class="btn btn-primary my-3 btn-editar" id="btn-nuevo" th:href="@{/curso/agregar}">
-			<i class="far fa-file"></i> Nuevo Curso
+		<h3 class="text-center mt-4">LISTA DE CARRERAS</h3>
+		<a type="button" class="btn btn-primary my-3 btn-editar" id="btn-nuevo" th:href="@{/carrera/agregar}">
+			<i class="far fa-file"></i> Nueva Carrera
 		</a>
 		<div class=" mt-2">
 
-			<table class="table table-striped table-bordered  shadow" id="tableCurso">
+			<table class="table table-striped table-bordered  shadow" id="tableCarrera">
 				<thead>
 					<tr>
 						<th>Código</th>
-						<th>Nombre</th>
-						<th>Créditos</th>
 						<th>Carrera</th>
-						<th>Profesor</th>
+						<th>Duración</th>
+						<th>Descripción</th>
 						<th></th>
 						<th></th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="data:${cursos}">
-						<td th:text="${data.id_curso}"></td>
-						<td th:text="${data.nombreCurso}"></td>
-						<td th:text="${data.creditos}"></td>
-						<td th:text="${data.carrera.nombreCarrera}"></td>
-						<td th:text="${data.profesor.usuario.nombre}"></td>
-						<td><a class="btn btn-info btn-editar" th:href="@{/curso/editar/}+${data.id_curso}"><i
+					<tr th:each="data:${carrera}">
+						<td th:text="${data.idCarrera}"></td>
+						<td th:text="${data.nombreCarrera}"></td>
+						<td th:text="${data.duracion}"></td>
+						<td th:text="${data.descripcion}"></td>
+						<td><a class="btn btn-info btn-editar" th:href="@{/carrera/editar/}+${data.idCarrera}"><i
 									class="far fa-edit"></i></a></td>
-						<td><a class="btn btn-danger btn-eliminar" th:href="@{/curso/eliminar/}+${data.id_curso}"><i
+						<td><a class="btn btn-danger btn-eliminar" th:href="@{/carrera/eliminar/}+${data.idCarrera}"><i
 									class="far fa-trash-alt"></i></a></td>
 					</tr>
 				</tbody>
@@ -99,7 +97,7 @@
 			<div class="modal-dialog modal-dialog-centered modal-login modal-lg">
 				<div class="modal-content shadow">
 					<div class="modal-header bg-body-secondary">
-						<h5 class="modal-title">Administrar cursos</h5>
+						<h5 class="modal-title">Administrar carreras</h5>
 					</div>
 					<div class="modal-body">
 						<!-- Aquí se mostrará el contenido de la ruta -->
@@ -109,13 +107,13 @@
 			</div>
 		</div>
 
-		<!-- begin #modal-dialog : MODAL CURSO-->
-		<div class="modal fade" id="modalCurso" data-backdrop="static" data-keyboard="false" tabindex="-1"
+		<!-- begin #modal-dialog : MODAL CARRERA-->
+		<div class="modal fade" id="modalCarrera" data-backdrop="static" data-keyboard="false" tabindex="-1"
 			aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-login modal-lg">
 				<div class="modal-content">
 					<div class="modal-header bg-blue-darker translucent">
-						<h4 class="modal-title text-white">Cursos</h4>
+						<h4 class="modal-title text-white">Carrera</h4>
 					</div>
 					<div class="modal-body">
 
@@ -123,7 +121,45 @@
 				</div>
 			</div>
 		</div>
-		<!-- FIN Modal CURSO-->
+		<!-- FIN Modal CARRERA-->
+
+		<!-- CONSULTA CARRERA -->
+		<div class="container">
+
+		<h3 class="text-center mt-4">CONSULTA CURSOS</h3>
+		<div>
+				<label for="idCarrera"><b>Carrera:</b></label>				
+				<select class="form-control-sm" id="idCarrera" name="carrera" th:field="*{carrera}">
+					<option value=" ">[Seleccione carrera]</option>
+					<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}" th:value="${row.idCarrera}" />
+				</select>
+				<input type="button" class="btn btn-primary" id="btn-consulta" value="Consultar"/>
+		</div>
+		
+		<div class=" mt-2">
+
+			<table class="table table-striped table-bordered  shadow" id="tableConsulta">
+				<thead>
+					<tr>
+						<th>Código</th>
+						<th>Carrera</th>
+						<th>Ciclo</th>
+						<th>Curso</th>
+						<th>Créditos</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<!-- FIN CONSULTA CARRERA -->
 
 		<div th:insert="plantilla/UITemplate :: javascript"></div>
 		<script>
@@ -151,10 +187,10 @@
 				$('.btn-eliminar').click(function (event) {
 					event.preventDefault(); // Evitar que el enlace se abra en una nueva página
 
-					var nombreCurso = $(this).parents("tr").find("td")[1].innerHTML; // Obtener el nombre del curso de la segunda columna
+					var nombreCarrera = $(this).parents("tr").find("td")[1].innerHTML; // Obtener el nombre de la carrera de la segunda columna
 					var urlEliminar = $(this).attr('href');
 
-					alertify.confirm('¿Estás seguro de eliminar el curso "' + nombreCurso + '"?',
+					alertify.confirm('¿Estás seguro de eliminar la carrera "' + nombreCarrera + '"?',
 						function () { // Confirmado
 							window.location.href = urlEliminar;
 						},

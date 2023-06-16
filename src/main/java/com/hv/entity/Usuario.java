@@ -20,11 +20,15 @@ public class Usuario {
     @Column(name = "correo_electronico")
     private String correoElectronico;
     @Column(name = "contrasena")
-    private String contrasena;
-    @Column(name = "rol")
-    private String rol;
+    private String clave;
     @Column(name = "login")
     private String login;
+    @Column(name = "dni")
+    private String dni;
+    
+	@ManyToOne
+	@JoinColumn(name="idrol")
+	private Rol rol;
     
     // Relación OneToMany con Matricula
     @OneToMany(mappedBy = "usuario")
@@ -62,20 +66,14 @@ public class Usuario {
 		this.correoElectronico = correoElectronico;
 	}
 
-	public String getContrasena() {
-		return contrasena;
+
+
+	public String getClave() {
+		return clave;
 	}
 
-	public void setContrasena(String contrasena) {
-		this.contrasena = contrasena;
-	}
-
-	public String getRol() {
-		return rol;
-	}
-
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setClave(String clave) {
+		this.clave = clave;
 	}
 
 	public List<Matricula> getMatriculas() {
@@ -92,6 +90,22 @@ public class Usuario {
 
 	public void setLogin(String login) {
 		this.login = login;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public Rol getRol() {
+		return rol;
+	}
+
+	public void setRol(Rol rol) {
+		this.rol = rol;
 	}
     
 

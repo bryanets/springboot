@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.hv.dao.UsuarioRepository;
+import com.hv.entity.Enlace;
 import com.hv.entity.Usuario;
 
 @Service
@@ -19,11 +20,17 @@ public class UsuarioServices {
 	public List<Usuario> listarTodos(){
 		return repo.findAll();
 	}
-	public void eliminarPorID(Integer cod) {
-		repo.deleteById(cod);
+	public void eliminar(Usuario usu) {
+		repo.deleteById(usu.getIdUsuario());
 	}
-	public Usuario buscarPorID(Integer cod) {
-		return repo.findById(cod).orElse(null);
+	public Usuario buscarPorID(Usuario usu) {
+		return repo.findById(usu.getIdUsuario()).orElse(null);
+	}
+	public Usuario validarUsuario(String vLogin) {
+		return repo.iniciarSesion(vLogin);
+	}
+	public List<Enlace> enlacesDelUsuario(int codRol){
+		return repo.traerEnlacesDelUsuario(codRol);
 	}
 }
 

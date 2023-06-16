@@ -46,7 +46,8 @@ public class Cursos {
     @OneToMany(mappedBy = "curso")
     private List<Horarios> horarios;
 
-
+    @OneToMany(mappedBy = "cursos")
+    private List<Notas> notas;
 
 	public Integer getId_curso() {
 		return id_curso;
@@ -103,7 +104,13 @@ public class Cursos {
 	public void setHorarios(List<Horarios> horarios) {
 		this.horarios = horarios;
 	}
-    
+	public List<Notas> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Notas> notas) {
+		this.notas = notas;
+	}
 
 }
 

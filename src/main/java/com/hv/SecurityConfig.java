@@ -25,7 +25,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeHttpRequests().requestMatchers("/usuario/**","/imagenes/**").permitAll().and()
-				.authorizeHttpRequests().requestMatchers("/curso/**", "/horario/**").authenticated().and().formLogin()
+				.authorizeHttpRequests().requestMatchers("/curso/**", "/horario/**", "/carrera/**", "/mantenimiento/**", "/intranet/**").authenticated().and().formLogin()
 				.loginPage("/usuario/validar").defaultSuccessUrl("/usuario/intranet");
 		return http.build();
 	}

@@ -13,4 +13,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
 	public Usuario iniciarSesion(String vLogin);
 	@Query("select e from RolEnlace re join re.enlace e where re.rol.codigo=?1")
 	public List<Enlace> traerEnlacesDelUsuario(int codigoRol);
+	@Query("select u from Usuario u where u.rol.codigo=3")
+	public List<Usuario> solicitantes();
 }

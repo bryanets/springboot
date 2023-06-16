@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+
+<head th:insert="plantilla/UITemplate :: cabecera">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Intranet</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<h3 class="text-center mt-3">Matricula</h3>
+
+		<form class="my-1" method="POST" id="formRegistra" th:action="@{/matricula/grabar}" th:object="${usuario}">
+
+			<div class="card my-4 shadow rounded-3">
+				<h5 class="card-header">Datos del alumno</h5>
+				<div class="card-body">
+					<div class="row">
+						<input type="text" class="form-control" id="idCodigo" th:field="*{idUsuario}" hidden>
+						<div class="col-md-6">
+							<label for="idNombre" class="form-label">Nombres</label>
+							<input type="text" class="form-control" id="idNombre" th:field="*{nombre}">
+						</div>
+						<div class="col-md-6">
+							<label for="idApellido" class="form-label">Apellidos</label>
+							<input type="text" class="form-control" id="idApellido" th:field="*{apellido}">
+						</div>
+						<div class="col-md-6 mt-1">
+							<label for="idEmail" class="form-label">Email</label>
+							<input type="email" class="form-control" id="idEmail" th:field="*{correoElectronico}">
+						</div>
+						<div class="col-md-6  mt-1">
+							<label for="idClave" class="form-label">Password</label>
+							<input type="text" class="form-control" id="idClave" th:field="*{clave}" readonly>
+						</div>
+						<div class="col-md-6  mt-1">
+							<label for="idDni" class="form-label">Dni</label>
+							<input type="number" class="form-control" id="idDni" th:field="*{dni}">
+						</div>
+						<div class="col-md-6  mt-2">
+							<label for="idRol">Carrera</label>
+							<select class="form-control" id="idRol" name="rol">
+								<option value=" ">[Seleccione]</option>
+								<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}"
+									th:value="${row.idCarrera}" />
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+
+
+			<div class="card my-4 shadow rounded-3">
+				<h5 class="card-header">
+					Cursos
+				</h5>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Nombre</th>
+								<th scope="col">Creditos</th>
+								<th scope="col">Ciclo</th>
+								<th class="text-center" scope="col">Horarios</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
+										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop">ver</button></td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
+										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop">ver</button></td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>Larry the Bird</td>
+								<td>Larry the Bird</td>
+								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
+										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
+										data-bs-target="#staticBackdrop">ver</button></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div class="card my-4 shadow rounded-3">
+				<h5 class="card-header">Horario</h5>
+				<div class="card-body">
+					<table class="table">
+						<thead>
+							<tr>
+								<th scope="col">Nombre</th>
+								<th scope="col">Lunes</th>
+								<th scope="col">Martes</th>
+								<th scope="col">Miércoles</th>
+								<th scope="col">Jueves</th>
+								<th scope="col">Viernes</th>
+								<th scope="col">Sábado</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>Larry the Bird</td>
+								<td>@twitter</td>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+
+			<div class="col-12">
+				<button type="submit" class="btn btn-primary">Matricular</button>
+			</div>
+		</form>
+	</div>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="staticBackdropLabel">Disponibles</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+
+				</div>
+			</div>
+		</div>
+
+
+		<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+</body>
+
+</html>

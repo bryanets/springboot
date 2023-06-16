@@ -56,7 +56,7 @@ CREATE TABLE `ciclo_academico` (
   PRIMARY KEY (`id_ciclo`),
   KEY `id_carrera` (`id_carrera`),
   CONSTRAINT `ciclo_academico_ibfk_1` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -65,7 +65,7 @@ CREATE TABLE `ciclo_academico` (
 
 LOCK TABLES `ciclo_academico` WRITE;
 /*!40000 ALTER TABLE `ciclo_academico` DISABLE KEYS */;
-INSERT INTO `ciclo_academico` VALUES (1,1,1,'primero');
+INSERT INTO `ciclo_academico` VALUES (1,1,1,'primero'),(2,1,2,'segundo'),(3,1,3,'tercero'),(4,1,4,'cuarto'),(5,1,5,'quinto'),(6,1,6,'sexto');
 /*!40000 ALTER TABLE `ciclo_academico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -96,6 +96,7 @@ CREATE TABLE `cursos` (
 
 LOCK TABLES `cursos` WRITE;
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
+INSERT INTO `cursos` VALUES (1,'Introducción a la algoritmia',3,1,1),(2,'Arquitectura de Entornos Web',3,1,1),(3,'Tecnologías de la Información',2,1,1),(4,'Fundamentos de Gestión Empresarial',2,1,1),(5,'Matemática I',2,1,1),(6,'Desarrollo de Habilidades Profesionales I',2,1,1);
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -122,6 +123,7 @@ CREATE TABLE `cursos_ciclo` (
 
 LOCK TABLES `cursos_ciclo` WRITE;
 /*!40000 ALTER TABLE `cursos_ciclo` DISABLE KEYS */;
+INSERT INTO `cursos_ciclo` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6);
 /*!40000 ALTER TABLE `cursos_ciclo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -240,6 +242,7 @@ CREATE TABLE `profesores` (
 
 LOCK TABLES `profesores` WRITE;
 /*!40000 ALTER TABLE `profesores` DISABLE KEYS */;
+INSERT INTO `profesores` VALUES (1,15);
 /*!40000 ALTER TABLE `profesores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -288,7 +291,7 @@ CREATE TABLE `tb_rol` (
 
 LOCK TABLES `tb_rol` WRITE;
 /*!40000 ALTER TABLE `tb_rol` DISABLE KEYS */;
-INSERT INTO `tb_rol` VALUES (1,'administrador'),(2,'alumno'),(3,'solicitante');
+INSERT INTO `tb_rol` VALUES (1,'administrador'),(2,'alumno'),(3,'solicitante'),(4,'profesor');
 /*!40000 ALTER TABLE `tb_rol` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +344,7 @@ CREATE TABLE `usuario` (
   KEY `fk_usuario_rol_idx` (`idrol`),
   KEY `llave_idx` (`idrol`),
   CONSTRAINT `ghgh` FOREIGN KEY (`idrol`) REFERENCES `tb_rol` (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +353,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'bryan','trebejo','bryantrebejo@hotmail.com','$2a$10$cKE.Y1BJHk.6Skw53xTbDO8MGdE2woJgQkZJ9GUuDlcynFTIcmh8G',1,'bryan','47586985');
+INSERT INTO `usuario` VALUES (1,'bryan','trebejo','bryantrebejo@hotmail.com','$2a$10$cKE.Y1BJHk.6Skw53xTbDO8MGdE2woJgQkZJ9GUuDlcynFTIcmh8G',1,'bryan','47586985'),(14,'frank','mendoza','i201821212@cibertec.edu.pe','wqwwqwqwq',3,'frank20','12345678'),(15,'Armando','Scripts','sarmando@cibertec.pe',NULL,4,'armando','85203698');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -371,4 +374,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-16  2:16:14
+-- Dump completed on 2023-06-16  7:07:17

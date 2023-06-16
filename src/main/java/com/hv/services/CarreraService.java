@@ -41,4 +41,8 @@ public class CarreraService {
 	public List<Carrera> listarCarreras(){
 		return repo.findAll();
 	}
+	
+	public List<Carrera> findByCarrera(Integer carrera){
+		return repo.findAllByCarrera(carrera);
+	}
 }

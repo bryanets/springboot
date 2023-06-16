@@ -32,6 +32,10 @@ public class UsuarioServices {
 	public List<Enlace> enlacesDelUsuario(int codRol){
 		return repo.traerEnlacesDelUsuario(codRol);
 	}
+	
+	public List<Usuario> solicitantes(){
+		return repo.solicitantes();
+	}
 }
 
 

@@ -24,13 +24,13 @@ public class HorarioSeccionServices {
 	public void eliminarPorId(Horarios horarios) {
 		repo.delete(horarios);
 	}
-<<<<<<< HEAD
+
 	public Horarios buscarPorId(Integer cod) {
 		return repo.findById(cod).orElse(null);
-=======
+	}
 	public Horarios buscar(Horarios horarios) {
 		return repo.findById(horarios.getIdHorario()).orElse(null);
->>>>>>> 73f1c24056b4412a17db45dc06726d581919b922
+
 	}
 	public List<Horarios> listarTodo(){
 		return repo.findAll();

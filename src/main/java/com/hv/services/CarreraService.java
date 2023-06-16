@@ -21,21 +21,21 @@ public class CarreraService {
 		repo.save(c);
 	}
 	
-<<<<<<< HEAD
+
 	public void eliminar(Carrera carrera) {
 		repo.delete(carrera);
 	}
 	
 	public Carrera buscar(Carrera carrera) {
 		return repo.findById(carrera.getIdCarrera()).orElse(null);
-=======
+	}
 	public void eliminarPorID(Integer cod) {
 		repo.deleteById(cod);
 	}
 	
 	public Carrera buscarPorID(Integer cod) {
 		return repo.findById(cod).orElse(null);
->>>>>>> 73f1c24056b4412a17db45dc06726d581919b922
+
 	}
 	
 	public List<Carrera> listarCarreras(){

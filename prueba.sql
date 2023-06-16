@@ -96,7 +96,6 @@ CREATE TABLE `cursos` (
 
 LOCK TABLES `cursos` WRITE;
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
-INSERT INTO `cursos` VALUES (8,'java',2,1,1),(10,'ADS',2,1,1),(11,'servicios web',3,1,1);
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,6 +187,38 @@ LOCK TABLES `matricula` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `notas`
+--
+
+DROP TABLE IF EXISTS `notas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `notas` (
+  `codigo` int NOT NULL AUTO_INCREMENT,
+  `CL1` int DEFAULT NULL,
+  `CL2` int DEFAULT NULL,
+  `CL3` int DEFAULT NULL,
+  `SP` int DEFAULT NULL,
+  `id_curso` int DEFAULT NULL,
+  `id_matricula` int DEFAULT NULL,
+  PRIMARY KEY (`codigo`),
+  KEY `fk_cursos_notas_idx` (`id_curso`),
+  KEY `fk_matricula_idx` (`id_matricula`),
+  CONSTRAINT `fk_cursos_notas` FOREIGN KEY (`id_curso`) REFERENCES `cursos` (`id_curso`),
+  CONSTRAINT `fk_matricula` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`id_matricula`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `notas`
+--
+
+LOCK TABLES `notas` WRITE;
+/*!40000 ALTER TABLE `notas` DISABLE KEYS */;
+/*!40000 ALTER TABLE `notas` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `profesores`
 --
 
@@ -209,8 +240,83 @@ CREATE TABLE `profesores` (
 
 LOCK TABLES `profesores` WRITE;
 /*!40000 ALTER TABLE `profesores` DISABLE KEYS */;
-INSERT INTO `profesores` VALUES (1,1);
 /*!40000 ALTER TABLE `profesores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_enlace`
+--
+
+DROP TABLE IF EXISTS `tb_enlace`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_enlace` (
+  `idenlace` int NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) DEFAULT NULL,
+  `ruta` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idenlace`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_enlace`
+--
+
+LOCK TABLES `tb_enlace` WRITE;
+/*!40000 ALTER TABLE `tb_enlace` DISABLE KEYS */;
+INSERT INTO `tb_enlace` VALUES (1,'login','/usuasrio/validar'),(2,'usuario','/usuario/lista'),(3,'carreras','/carrera/lista'),(4,'cursos','/curso/lista'),(5,'matriculas','/matricula/lista'),(6,'horarios','/horario/lista'),(7,'intranet','/usuario/intranet');
+/*!40000 ALTER TABLE `tb_enlace` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_rol`
+--
+
+DROP TABLE IF EXISTS `tb_rol`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_rol` (
+  `idrol` int NOT NULL AUTO_INCREMENT,
+  `descripcion` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idrol`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_rol`
+--
+
+LOCK TABLES `tb_rol` WRITE;
+/*!40000 ALTER TABLE `tb_rol` DISABLE KEYS */;
+INSERT INTO `tb_rol` VALUES (1,'administrador'),(2,'alumno'),(3,'solicitante');
+/*!40000 ALTER TABLE `tb_rol` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_rol_enlace`
+--
+
+DROP TABLE IF EXISTS `tb_rol_enlace`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tb_rol_enlace` (
+  `idrol` int NOT NULL,
+  `idenlace` int NOT NULL,
+  PRIMARY KEY (`idrol`,`idenlace`),
+  KEY `fk25` (`idenlace`),
+  CONSTRAINT `fk24` FOREIGN KEY (`idrol`) REFERENCES `tb_rol` (`idrol`),
+  CONSTRAINT `fk25` FOREIGN KEY (`idenlace`) REFERENCES `tb_enlace` (`idenlace`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_rol_enlace`
+--
+
+LOCK TABLES `tb_rol_enlace` WRITE;
+/*!40000 ALTER TABLE `tb_rol_enlace` DISABLE KEYS */;
+INSERT INTO `tb_rol_enlace` VALUES (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(1,7);
+/*!40000 ALTER TABLE `tb_rol_enlace` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -222,15 +328,20 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `id_usuario` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(255) DEFAULT NULL,
-  `apellido` varchar(255) DEFAULT NULL,
+  `nombre` varchar(255) NOT NULL,
+  `apellido` varchar(255) NOT NULL,
   `correo_electronico` varchar(255) DEFAULT NULL,
   `contrasena` varchar(255) DEFAULT NULL,
-  `rol` varchar(255) DEFAULT NULL,
+  `idrol` int DEFAULT NULL,
   `login` varchar(45) DEFAULT NULL,
+  `dni` varchar(8) NOT NULL,
   PRIMARY KEY (`id_usuario`),
-  UNIQUE KEY `login_UNIQUE` (`login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  UNIQUE KEY `dni_UNIQUE` (`dni`),
+  UNIQUE KEY `login_UNIQUE` (`login`),
+  KEY `fk_usuario_rol_idx` (`idrol`),
+  KEY `llave_idx` (`idrol`),
+  CONSTRAINT `ghgh` FOREIGN KEY (`idrol`) REFERENCES `tb_rol` (`idrol`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -239,7 +350,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'Bryan','trebejo','usu@usu.com','usu','usuario','login');
+INSERT INTO `usuario` VALUES (1,'bryan','trebejo','bryantrebejo@hotmail.com','$2a$10$cKE.Y1BJHk.6Skw53xTbDO8MGdE2woJgQkZJ9GUuDlcynFTIcmh8G',1,'bryan','47586985');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -260,4 +371,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-09  1:42:35
+-- Dump completed on 2023-06-16  2:16:14

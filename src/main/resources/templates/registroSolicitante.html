@@ -27,7 +27,7 @@
 		</div>
 		<div class="form-group mb-3">
 			<label for="idEmail" class="form-label">Email</label>
-			<input type="email" class="form-control" id="idEmail" name="email" th:field="*{correoElectronico}">
+			<input type="text" class="form-control" id="idEmail" name="email" th:field="*{correoElectronico}">
 			<small class="error-message"></small>
 		</div>
 		<div class="form-group mb-3">
@@ -35,12 +35,10 @@
 			<input type="text" class="form-control" id="idClave" name="clave" th:field="*{clave}">
 			<small class="error-message"></small>
 		</div>
-		<div class="form-group has-feedback col-md-6">
-			<label for="idRol"><b>Rol</b></label><br>
-			<select class="form-control" id="idRol" name="rol">
-				<option value=" ">[Seleccione Rol]</option>
-				<option th:each="row:${rol}" th:utext="${row.descripcion}" th:value="${row.codigo}" />
-			</select>
+		<div class="form-group mb-3">
+			<label for="idRol" class="form-label">Rol</label>
+			<input type="text" class="form-control" id="idRol" name="rol" th:field="*{rol}">
+			<small class="error-message"></small>
 		</div>
 		<div class="form-group mb-3">
 			<label for="idLogin" class="form-label">Login</label>

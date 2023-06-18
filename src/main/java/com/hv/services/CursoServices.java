@@ -34,4 +34,8 @@ public class CursoServices {
 		return repo.findAll();
 	}
 	
+	public List<Cursos> cursosPorCarrera(int cod){
+		return repo.cursosPorCarrera(cod);
+	}
+	
 }

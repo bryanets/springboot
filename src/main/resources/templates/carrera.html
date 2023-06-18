@@ -5,53 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Carreras</title>
-	<style>
-		.modal-header {
-			color: #fff;
-			background: #428bca;
-			display: flex;
-			justify-content: center;
-		}
 
-		.help-block {
-			color: red;
-		}
-
-		.form-group.has-error .form-control-label {
-			color: red;
-		}
-
-		.form-group.has-error .form-control {
-			border: 1px solid red;
-			box-shadow: 0 0 0 0.2rem rgba(250, 16, 0, 0.18);
-		}
-
-		.alertify .ajs-dialog {
-			top: 50%;
-			transform: translateY(-50%);
-			margin: auto;
-		}
-
-		.ajs-header {
-			background-color: #286090 !important;
-			color: white !important;
-			/*text-align: center;*/
-			font-size: 18px;
-			font-weight: bold;
-		}
-
-		.ajs-ok {
-			color: #fff;
-			background-color: #007bff;
-			border-color: #007bff;
-		}
-
-		.ajs-cancel {
-			color: #fff;
-			background-color: #dc3545;
-			border-color: #dc3545;
-		}
-	</style>
 </head>
 
 <body>
@@ -66,7 +20,7 @@
 		</a>
 		<div class=" mt-2">
 
-			<table class="table table-striped table-bordered  shadow" id="tableCarrera">
+			<table class="table table-striped table-bordered shadow" id="tableCarrera">
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -126,81 +80,93 @@
 		<!-- CONSULTA CARRERA -->
 		<div class="container">
 
-		<h3 class="text-center mt-4">CONSULTA CURSOS</h3>
-		<div>
-				<label for="idCarrera"><b>Carrera:</b></label>				
+			<h3 class="text-center mt-4">CONSULTA CURSOS</h3>
+			<div>
+				<label for="idCarrera"><b>Carrera:</b></label>
 				<select class="form-control-sm" id="idCarrera" name="carrera" th:field="*{carrera}">
 					<option value=" ">[Seleccione carrera]</option>
 					<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}" th:value="${row.idCarrera}" />
 				</select>
-				<input type="button" class="btn btn-primary" id="btn-consulta" value="Consultar"/>
-		</div>
-		
-		<div class=" mt-2">
+				<input type="button" class="btn btn-primary" id="btn-consulta" value="Consultar" />
+			</div>
 
-			<table class="table table-striped table-bordered  shadow" id="tableConsulta">
-				<thead>
-					<tr>
-						<th>Código</th>
-						<th>Carrera</th>
-						<th>Ciclo</th>
-						<th>Curso</th>
-						<th>Créditos</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-						<td></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-		<!-- FIN CONSULTA CARRERA -->
+			<div class=" mt-2">
 
-		<div th:insert="plantilla/UITemplate :: javascript"></div>
-		<script>
-			$(document).ready(function () {
-				$('.btn-editar').click(function (event) {
-					event.preventDefault(); // Evitar que el enlace se abra en una nueva página
+				<table class="table table-striped table-bordered  shadow" id="tableConsulta">
+					<thead>
+						<tr>
+							<th>Código</th>
+							<th>Carrera</th>
+							<th>Ciclo</th>
+							<th>Curso</th>
+							<th>Créditos</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- FIN CONSULTA CARRERA -->
 
-					var url = $(this).attr('href'); // Obtener la URL del enlace
+			<div th:insert="plantilla/UITemplate :: javascript"></div>
+			<script>
+								       			
+				$(document).ready(function () {
+					$('.btn-editar').click(function (event) {
+						event.preventDefault(); // Evitar que el enlace se abra en una nueva página
+
+						var url = $(this).attr('href'); // Obtener la URL del enlace
 
 
-					// Realizar una solicitud AJAX para obtener el contenido de la ruta
-					$.get(url, function (data) {
-						// Actualizar el contenido del modal con la respuesta
-						$('#myModal .modal-body').html(data);
+						// Realizar una solicitud AJAX para obtener el contenido de la ruta
+						$.get(url, function (data) {
+							// Actualizar el contenido del modal con la respuesta
+							$('#myModal .modal-body').html(data);
 
-						// Mostrar el modal
-						$('#myModal').show();
+							// Mostrar el modal
+							$('#myModal').show();
+						});
+
 					});
-
 				});
-			});
 
 
-			$(document).ready(function () {
-				$('.btn-eliminar').click(function (event) {
-					event.preventDefault(); // Evitar que el enlace se abra en una nueva página
+				$(document).ready(function () {
+					$('.btn-eliminar').click(function (event) {
+						event.preventDefault(); // Evitar que el enlace se abra en una nueva página
 
-					var nombreCarrera = $(this).parents("tr").find("td")[1].innerHTML; // Obtener el nombre de la carrera de la segunda columna
-					var urlEliminar = $(this).attr('href');
+						var nombreCarrera = $(this).parents("tr").find("td")[1].innerHTML; // Obtener el nombre de la carrera de la segunda columna
+						var urlEliminar = $(this).attr('href');
 
-					alertify.confirm('¿Estás seguro de eliminar la carrera "' + nombreCarrera + '"?',
-						function () { // Confirmado
-							window.location.href = urlEliminar;
-						},
-						function () { // Cancelado
-							alertify.error('Cancelado!');
-						}
-					).set('labels', {ok: 'Si', cancel: 'No'}).show();
+						alertify.confirm('¿Estás seguro de eliminar la carrera "' + nombreCarrera + '"?',
+							function () { // Confirmado
+								window.location.href = urlEliminar;
+							},
+							function () { // Cancelado
+								alertify.error('Cancelado!');
+							}
+						).set('labels', {ok: 'Si', cancel: 'No'}).show();
+					});
 				});
-			});
-		</script>
+
+
+				$(document).on("change", "#idCarrera", function () {
+					let cod;
+					cod = $(this).val();
+					$.get("/carrera/buscar", function (response) {
+						//var tbody = $('#tableConsulta tbody');
+						console.log(response);
+					})
+				})
+
+			</script>
 </body>
 
 </html>

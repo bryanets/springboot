@@ -1,6 +1,8 @@
 package com.hv.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //import java.util.List;
 
 import jakarta.persistence.EmbeddedId;
@@ -27,6 +29,7 @@ public class CursosCiclo {
     @ManyToOne
     @MapsId("idCurso")
     @JoinColumn(name = "id_curso")
+    @JsonIgnore
     private Cursos curso;
 
 	public CursosCicloId getId() {

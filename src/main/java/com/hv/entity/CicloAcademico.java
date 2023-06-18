@@ -1,5 +1,8 @@
 package com.hv.entity;
+import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -13,7 +16,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "ciclo_academico")
-public class CicloAcademico {
+public class CicloAcademico implements Serializable{
+	private static final long serialVersionUID =1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,11 +30,13 @@ public class CicloAcademico {
     
     // Relación ManyToOne con Carrera
     @ManyToOne
-    @JoinColumn(name = "id_carrera")
+    @JoinColumn(name = "idCarrera")
+    @JsonIgnore
     private Carrera carrera;
     
     // Relación OneToMany con CursosCiclo
     @OneToMany(mappedBy = "cicloAcademico")
+    @JsonIgnore
     private List<CursosCiclo> cursosCiclo;
 
 	public Integer getIdCiclo() {

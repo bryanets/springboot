@@ -1,6 +1,9 @@
 package com.hv.entity;
 
+import java.io.Serializable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import java.util.List;
 
@@ -17,7 +20,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Cursos")
-public class Cursos {
+public class Cursos implements Serializable{
+	private static final long serialVersionUID =1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +31,18 @@ public class Cursos {
     private String nombreCurso;
     @Column(name = "creditos")
     private Integer creditos;
+
     
     // Relación ManyToOne con Carrera
     @ManyToOne
     @JoinColumn(name = "id_carrera")
+    @JsonIgnore
     private Carrera carrera;
     
     // Relación ManyToOne con Profesores
     @ManyToOne
     @JoinColumn(name = "id_profesor")
+    @JsonIgnore
     private Profesores profesor;
     
     // Relación OneToMany con CursosCiclo
@@ -56,6 +63,8 @@ public class Cursos {
 	public void setId_curso(Integer id_curso) {
 		this.id_curso = id_curso;
 	}
+
+
 
 	public String getNombreCurso() {
 		return nombreCurso;

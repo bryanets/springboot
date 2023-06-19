@@ -2,6 +2,8 @@ package com.hv.entity;
 
 import java.time.LocalTime;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,6 +35,7 @@ public class Horarios {
     // Relación ManyToOne con Cursos
     @ManyToOne
     @JoinColumn(name = "id_curso")
+    @JsonIgnore
     private Cursos curso;
 
 

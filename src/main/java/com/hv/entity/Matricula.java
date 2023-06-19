@@ -35,9 +35,8 @@ public class Matricula {
     private Carrera carrera;
     
     // Relación ManyToOne con Cursos
-    @ManyToOne
-    @JoinColumn(name = "id_curso")
-    private Cursos curso;
+    @OneToMany(mappedBy = "matriculaCursos")
+    private List<Cursos> listaCursos;
     
     @Column(name = "fecha_matricula")
     private LocalDate fechaMatricula;
@@ -69,12 +68,12 @@ public class Matricula {
 		this.carrera = carrera;
 	}
 
-	public Cursos getCurso() {
-		return curso;
+	public List<Cursos> getListaCursos() {
+		return listaCursos;
 	}
 
-	public void setCurso(Cursos curso) {
-		this.curso = curso;
+	public void setListaCursos(List<Cursos> listaCursos) {
+		this.listaCursos = listaCursos;
 	}
 
 	public LocalDate getFechaMatricula() {

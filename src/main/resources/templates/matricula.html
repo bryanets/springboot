@@ -40,8 +40,8 @@
 							<input type="number" class="form-control" id="idDni" th:field="*{dni}">
 						</div>
 						<div class="col-md-6  mt-2">
-							<label for="idRol">Carrera</label>
-							<select class="form-control" id="idRol" name="rol">
+							<label for="idCarrera">Carrera</label>
+							<select class="form-control" id="idCarrera" name="rol">
 								<option value=" ">[Seleccione]</option>
 								<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}"
 									th:value="${row.idCarrera}" />
@@ -59,36 +59,20 @@
 					Cursos
 				</h5>
 				<div class="card-body">
-					<table class="table">
+					<table class="table" id="tableCursos">
 						<thead>
 							<tr>
+								<th scope="col">Cod</th>
 								<th scope="col">Nombre</th>
-								<th scope="col">Creditos</th>
 								<th scope="col">Ciclo</th>
 								<th class="text-center" scope="col">Horarios</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
-										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
-										data-bs-target="#staticBackdrop">ver</button></td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
-										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
-										data-bs-target="#staticBackdrop">ver</button></td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry the Bird</td>
-								<td>Larry the Bird</td>
+								<th></th>
+								<td></td>
+								<td></td>
 								<td class="text-center"><button type="button" class="btn mx-5 mb-1 b"
 										style="background: rgb(120, 252, 186);" data-bs-toggle="modal"
 										data-bs-target="#staticBackdrop">ver</button></td>
@@ -102,44 +86,25 @@
 			<div class="card my-4 shadow rounded-3">
 				<h5 class="card-header">Horario</h5>
 				<div class="card-body">
-					<table class="table">
+					<table class="table" id="tableAgenda">
 						<thead>
 							<tr>
-								<th scope="col">Nombre</th>
-								<th scope="col">Lunes</th>
-								<th scope="col">Martes</th>
-								<th scope="col">Miércoles</th>
-								<th scope="col">Jueves</th>
-								<th scope="col">Viernes</th>
-								<th scope="col">Sábado</th>
+								<th scope="col" class="text-center">Lunes</th>
+								<th scope="col" class="text-center">Martes</th>
+								<th scope="col" class="text-center">Miercoles</th>
+								<th scope="col" class="text-center">Jueves</th>
+								<th scope="col" class="text-center">Viernes</th>
+								<th scope="col" class="text-center">Sabado</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">1</th>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">2</th>
-								<td>Jacob</td>
-								<td>Thornton</td>
-								<td>@fat</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
-							</tr>
-							<tr>
-								<th scope="row">3</th>
-								<td>Larry the Bird</td>
-								<td>@twitter</td>
-								<td>Mark</td>
-								<td>Otto</td>
-								<td>@mdo</td>
+								<td class="text-center"></td>
+								<td class="text-center"></td>
+								<td class="text-center"></td>
+								<td class="text-center"></td>
+								<td class="text-center"></td>
+								<td class="text-center"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -166,12 +131,142 @@
 				</div>
 				<div class="modal-body">
 
+					<table class="table" id="tableHorario">
+						<thead>
+							<tr>
+								<th scope="col">Día</th>
+								<th class="text-center" scope="col">Aula</th>
+								<th class="text-center" scope="col">Inicio</th>
+								<th class="text-center" scope="col">Fin</th>
+								<th class="text-center" scope="col">Selecione</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th></th>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>
 
 
 		<div th:insert="plantilla/UITemplate :: javascript"></div>
+
+
+
+		<script>
+			$(document).ready(function () {
+				
+				// Capturar el cambio de valor en el select
+				$('#idCarrera').change(function () {
+					var selectedValue = $(this).val(); // Obtener el valor seleccionado
+					let codigo = {value: selectedValue}.value;
+					console.log(codigo);
+					// Realizar una petición al controlador y obtener el JSON
+					$.get('/carrera/buscarPorId?idCarrera=' + codigo, function (response) {
+						// Limpiar la tabla antes de llenarla con nuevos datos
+						console.log(response.cursos);
+						$('#tableCursos tbody').empty();
+
+						// Recorrer los datos del JSON y agregar filas a la tabla
+						$.each(response.cursos, function (index, curso) {
+							var row = '<tr>' +
+								'<td>' + curso.id_curso + '</td>' +
+								'<td>' + curso.nombreCurso + '</td>' +
+								'<td>' + curso.cursosCiclo[String(0)].cicloAcademico.descripcion + '</td>' +
+								'<td class="text-center">' +
+								'<button type="button" class="btn mx-5 mb-1 b ver-horarios-button" style="background: rgb(120, 252, 186);" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-codigo="' + curso.id_curso + '">ver</button>' +
+								'</td>' +
+								'</tr>';
+
+							$('#tableCursos tbody').append(row);
+						});
+
+						// Agregar el evento click al botón "ver" dentro de la tabla
+						$('#tableCursos').on('click', '.ver-horarios-button', function () {
+							var codigoCurso = $(this).data('codigo'); // Obtener el código del curso del atributo data-codigo
+
+							// Obtener el curso correspondiente utilizando el código
+							var curso = response.cursos.find(curso => curso.id_curso === codigoCurso);
+
+							// Obtener los horarios del curso
+							var horarios = curso.horarios;
+
+							// Limpiar la tabla de horarios antes de llenarla con los nuevos datos
+							$('#tableHorario tbody').empty();
+
+							// Recorrer los horarios y agregar filas a la tabla
+							$.each(horarios, function (index, horario) {
+								var row = '<tr>' +
+									'<td>' + horario.diaSemana + '</td>' +
+									'<td>' + horario.aula + '</td>' +
+									'<td>' + horario.horaInicio + '</td>' +
+									'<td>' + horario.horaFin + '</td>' +
+									'<td>' +
+									'<button type="button" class="btn mx-5 mb-1 b agenda-button" data-bs-dismiss="modal" style="background: rgb(120, 252, 186);" data-codigo="' + horario.idHorario + '">+</button>' +
+									'</td>' +
+									'</tr>';
+
+								$('#tableHorario tbody').append(row);
+							});
+
+							// Agregar el evento click al botón "agenda" dentro de la tabla de horarios
+							$('#tableHorario').off('click', '.agenda-button').on('click', '.agenda-button', function () {
+								var codigoHorario = $(this).data('codigo'); // Obtener el código del horario del atributo data-codigo
+								console.log(codigoHorario);
+								// Obtener el horario correspondiente utilizando el código
+								var horario = horarios.find(horario => horario.idHorario === codigoHorario);
+
+								// Verificar si el horario y la propiedad diaSemana están definidos
+								if (horario && horario.diaSemana) {
+									// Obtener el día de la semana del horario actual
+									var diaSemana = horario.diaSemana;
+
+									// Buscar la columna correspondiente al día de la semana en la tabla de agenda
+									var columna = $('#tableAgenda thead th').filter(function () {
+										return $(this).text() === diaSemana;
+									}).index();
+
+
+
+									var newRow = $('<tr>'); // Crear un nuevo elemento <tr>
+
+									// Recorrer las columnas de la tabla
+									for (var i = 0; i < 6; i++) {
+										if (i === columna) {
+											newRow.append($('<td class="text-center">').html(curso.nombreCurso + '<br>' + horario.horaInicio + '-' + horario.horaFin));
+										} else {
+											// Agregar las columnas vacías
+											newRow.append($('<td>'));
+										}
+									}
+
+									// Agregar la nueva fila al cuerpo de la tabla
+									$('#tableAgenda tbody').append(newRow);
+									
+									newRow = '';
+								}
+								horario = '';
+							});
+
+						});
+					});
+				});
+			});
+		</script>
+
+
+
+
+
+
+
 
 </body>
 

@@ -57,4 +57,11 @@ public class CarreraController {
 		
 		return serCarrera.listarCarreras();
 	}
+	
+	@RequestMapping("/buscarPorId")
+	@ResponseBody
+	public Carrera buscar(@RequestParam("idCarrera")int cod) {
+		
+		return serCarrera.buscarPorID(cod);
+	}
 }

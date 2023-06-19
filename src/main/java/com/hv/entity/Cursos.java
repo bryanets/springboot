@@ -55,6 +55,11 @@ public class Cursos implements Serializable{
 
     @OneToMany(mappedBy = "cursos")
     private List<Notas> notas;
+    
+    @ManyToOne
+    @JoinColumn(name="id_matricula")
+    @JsonIgnore
+    private Matricula matriculaCursos;
 
 	public Integer getId_curso() {
 		return id_curso;
@@ -121,6 +126,15 @@ public class Cursos implements Serializable{
 		this.notas = notas;
 	}
 
+	public Matricula getMatriculaCursos() {
+		return matriculaCursos;
+	}
+
+	public void setMatriculaCursos(Matricula matriculaCursos) {
+		this.matriculaCursos = matriculaCursos;
+	}
+
+	
 }
 
 

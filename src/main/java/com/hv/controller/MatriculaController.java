@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.hv.entity.Matricula;
 import com.hv.entity.Usuario;
 import com.hv.services.CarreraService;
+import com.hv.services.MatriculaService;
 import com.hv.services.UsuarioServices;
 
 @Controller
@@ -16,10 +18,14 @@ import com.hv.services.UsuarioServices;
 public class MatriculaController {
 
 	@Autowired
+	private MatriculaService matriculaService;
+	
+	@Autowired
 	private UsuarioServices usuarioService;
 	
 	@Autowired
 	private CarreraService carreraService;
+	
 	
 	@GetMapping("/lista")
 	public String index(Model model) {
@@ -28,17 +34,19 @@ public class MatriculaController {
 	}
 	
 	@GetMapping("/editar/{idUsuario}")
-	public String agregar(Usuario usuario,Model model) {
+	public String registrar(Usuario usuario,Model model) {
 		usuario = usuarioService.buscarPorID(usuario);
 		 model.addAttribute("carrera", carreraService.listarCarreras());
-		// model.addAttribute("profesores", serProfesor.listarProfesores());
+		 //model.addAttribute("profesores", serProfesor.listarProfesores());
 		 model.addAttribute("usuario", usuario);
 		return "matricula";
 	}
 	
+	
+	
 	@PostMapping("/grabar")
-	public String guardar(Usuario usuario) {
-		//usuService.Guardar(usuario);
+	public String guardar(Matricula matricula) {
+		matriculaService.registrar(matricula);
 		return "redirect:/usuario/lista";
 	}
 }

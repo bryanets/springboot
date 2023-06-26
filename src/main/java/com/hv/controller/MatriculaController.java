@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hv.entity.Carrera;
 import com.hv.entity.DetalleHorario;
@@ -84,7 +85,7 @@ public class MatriculaController {
 	}
 
 	@PostMapping("/grabar")
-	public String guardar(Usuario usuario, @RequestParam("carrera") int car,HttpSession session) {
+	public String guardar(Usuario usuario, @RequestParam("carrera") int car,HttpSession session,RedirectAttributes redirect) {
 		Matricula m = new Matricula();
 
 		// Usuario usuario = new Usuario();
@@ -103,7 +104,7 @@ public class MatriculaController {
 		m.setDetalleHorario(lista);
 
 		matriculaService.registrar(m);
-
+		redirect.addFlashAttribute("MENSAJE","Alumno registrado");
 		return "redirect:/usuario/lista";
 	}
 }

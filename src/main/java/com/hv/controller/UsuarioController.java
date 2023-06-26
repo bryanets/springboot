@@ -102,6 +102,7 @@ public class UsuarioController {
 		List<Enlace> datos = usuService.enlacesDelUsuario(bean.getRol().getCodigo());
 		model.addAttribute("datos", bean.getApellido() + " " + bean.getNombre());
 		model.addAttribute("enlaces", datos);
+		model.addAttribute("usuario", bean);
 		return "intranet";
 	}
 

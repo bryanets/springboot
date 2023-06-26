@@ -10,7 +10,39 @@
 <body>
 
 	<div th:insert="plantilla/UITemplate :: menu"></div>
-	
+	<form class="my-1" method="get" id="formRegistra" th:object="${usuario}">
+
+			<div class="card my-4 shadow rounded-3">
+				<h5 class="card-header">Datos del alumno</h5>
+				<div class="card-body">
+					<div class="row">
+						<input type="text" class="form-control" id="idCodigo" th:field="*{idUsuario}" hidden>
+						<div class="col-md-6">
+							<label for="idNombre" class="form-label">Nombres</label>
+							<input type="text" class="form-control" id="idNombre" th:field="*{nombre}">
+						</div>
+						<div class="col-md-6">
+							<label for="idApellido" class="form-label">Apellidos</label>
+							<input type="text" class="form-control" id="idApellido" th:field="*{apellido}">
+						</div>
+						<div class="col-md-6 mt-1">
+							<label for="idEmail" class="form-label">Email</label>
+							<input type="email" class="form-control" id="idEmail" th:field="*{correoElectronico}">
+						</div>
+						<div class="col-md-6  mt-1">
+							<label for="idDni" class="form-label">Dni</label>
+							<input type="number" class="form-control" id="idDni" th:field="*{dni}">
+						</div>
+						<div class="col-md-6  mt-2">
+							<label for="idCarrera" class="form-label">Carrera</label>
+							<input type="text" class="form-control" id="idCarrera"  th:field="*{matriculas}">
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+		
 	<div th:insert="plantilla/UITemplate :: javascript"></div>
 	
 </body>

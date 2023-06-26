@@ -44,7 +44,9 @@
 			
 			<div class="card my-4 shadow rounded-3 ">
 				<h5 class="card-header " style="background-color: aquamarine;">Cursos :</h5>
-				<h5 class="card-header " style="background-color: aquamarine;">Introduccion a la Algoritmia</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
 						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
@@ -68,121 +70,131 @@
 				</div>
 			</div>
 			<div class="card my-4 shadow rounded-3">
-				<h5 class="card-header" style="background-color: aquamarine;">Arquitectura de Entornos Web</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].notas[1].codigo}" hidden>
 						<div class="col-md-2">
 							<label for="idNombre" class="form-label">CL1 :</label>
-							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl1}">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].notas[1].cl1}">
 						</div>
 						<div class="col-md-2">
 							<label for="idApellido" class="form-label">CL2 :</label>
-							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl2}">
+							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].notas[1].cl2}">
 						</div>
 						<div class="col-md-2">
 							<label for="idEmail" class="form-label">CL3 :</label>
-							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl3}">
+							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].notas[1].cl3}">
 						</div>
 						<div class="col-md-2">
 							<label for="idDni" class="form-label">SP :</label>
-							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].sp}">
+							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[1].notas[1].sp}">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card my-4 shadow rounded-3">
-				<h5 class="card-header" style="background-color: aquamarine;">Tecnologías de la Información</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].notas[2].codigo}" hidden>
 						<div class="col-md-2">
 							<label for="idNombre" class="form-label">CL1 :</label>
-							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl1}">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].notas[2].cl1}">
 						</div>
 						<div class="col-md-2">
 							<label for="idApellido" class="form-label">CL2 :</label>
-							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl2}">
+							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].notas[2].cl2}">
 						</div>
 						<div class="col-md-2">
 							<label for="idEmail" class="form-label">CL3 :</label>
-							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl3}">
+							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].notas[2].cl3}">
 						</div>
 						<div class="col-md-2">
 							<label for="idDni" class="form-label">SP :</label>
-							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].sp}">
+							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[2].notas[2].sp}">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card my-4 shadow rounded-3">
-				<h5 class="card-header" style="background-color: aquamarine;">Fundamentos de Gestión Empresarial</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].notas[3].codigo}" hidden>
 						<div class="col-md-2">
 							<label for="idNombre" class="form-label">CL1 :</label>
-							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl1}">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].notas[3].cl1}">
 						</div>
 						<div class="col-md-2">
 							<label for="idApellido" class="form-label">CL2 :</label>
-							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl2}">
+							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].notas[3].cl2}">
 						</div>
 						<div class="col-md-2">
 							<label for="idEmail" class="form-label">CL3 :</label>
-							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl3}">
+							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].notas[3].cl3}">
 						</div>
 						<div class="col-md-2">
 							<label for="idDni" class="form-label">SP :</label>
-							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].sp}">
+							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[3].notas[3].sp}">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card my-4 shadow rounded-3">
-				<h5 class="card-header" style="background-color: aquamarine;">Matemática I</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].notas[4].codigo}" hidden>
 						<div class="col-md-2">
 							<label for="idNombre" class="form-label">CL1 :</label>
-							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl1}">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].notas[4].cl1}">
 						</div>
 						<div class="col-md-2">
 							<label for="idApellido" class="form-label">CL2 :</label>
-							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl2}">
+							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].notas[4].cl2}">
 						</div>
 						<div class="col-md-2">
 							<label for="idEmail" class="form-label">CL3 :</label>
-							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl3}">
+							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].notas[4].cl3}">
 						</div>
 						<div class="col-md-2">
 							<label for="idDni" class="form-label">SP :</label>
-							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].sp}">
+							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[4].notas[4].sp}">
 						</div>
 					</div>
 				</div>
 			</div>
 			<div class="card my-4 shadow rounded-3">
-				<h5 class="card-header" style="background-color: aquamarine;">Desarrollo de Habilidades Profesionales I</h5>
+				<div class="card-header">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].nombreCurso}">
+						</div>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].codigo}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].notas[5].codigo}" hidden>
 						<div class="col-md-2">
 							<label for="idNombre" class="form-label">CL1 :</label>
-							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl1}">
+							<input type="text" class="form-control" id="idNombre" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].notas[5].cl1}">
 						</div>
 						<div class="col-md-2">
 							<label for="idApellido" class="form-label">CL2 :</label>
-							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl2}">
+							<input type="text" class="form-control" id="idApellido" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].notas[5].cl2}">
 						</div>
 						<div class="col-md-2">
 							<label for="idEmail" class="form-label">CL3 :</label>
-							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].cl3}">
+							<input type="email" class="form-control" id="idEmail" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].notas[5].cl3}">
 						</div>
 						<div class="col-md-2">
 							<label for="idDni" class="form-label">SP :</label>
-							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[0].notas[0].sp}">
+							<input type="number" class="form-control" id="idDni" th:readonly="${true}"  th:field="*{matriculas[0].carrera.cursos[5].notas[5].sp}">
 						</div>
 					</div>
 				</div>

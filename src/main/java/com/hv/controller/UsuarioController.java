@@ -103,7 +103,10 @@ public class UsuarioController {
 		model.addAttribute("datos", bean.getApellido() + " " + bean.getNombre());
 		model.addAttribute("enlaces", datos);
 		model.addAttribute("usuario", bean);
-		return "intranet";
+		if(bean.getRol().getCodigo()==1){
+			return "usuario";
+		}else {
+		return "intranet";}
 	}
 
 	@RequestMapping("/validar")

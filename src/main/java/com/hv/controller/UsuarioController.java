@@ -34,6 +34,7 @@ public class UsuarioController {
 	
 	@Autowired
 	private BCryptPasswordEncoder encoder;
+	
 
 	@GetMapping("/lista")
 	public String index(Model model) {
@@ -107,6 +108,15 @@ public class UsuarioController {
 	@RequestMapping("/validar")
 	public String index() {
 		return "login";
+	}
+	
+	@RequestMapping("/buscarPorId")
+	@ResponseBody
+	public Usuario buscar(@RequestParam("idUsuario") int cod) {
+
+		Usuario u = new Usuario();
+		u.setIdUsuario(cod);
+		return usuService.buscarPorID(u);
 	}
 
 }

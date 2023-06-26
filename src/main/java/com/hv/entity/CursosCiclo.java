@@ -1,6 +1,8 @@
 package com.hv.entity;
 
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //import java.util.List;
@@ -14,7 +16,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "cursos_ciclo")
-public class CursosCiclo {
+public class CursosCiclo implements Serializable {
 
     @EmbeddedId
     private CursosCicloId id;

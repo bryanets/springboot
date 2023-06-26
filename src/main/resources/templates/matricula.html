@@ -217,6 +217,7 @@
 									'</tr>';
 
 								$('#tableHorario tbody').append(row);
+
 							});
 
 							// Agregar el evento click al botón "agenda" dentro de la tabla de horarios
@@ -239,6 +240,9 @@
 
 
 									var newRow = $('<tr>'); // Crear un nuevo elemento <tr>
+
+
+									$.get("/matricula/adicionar?id_horario=" + codigoHorario + "&id_curso=" + codigoCurso);
 
 									// Recorrer las columnas de la tabla
 									for (var i = 0; i < 6; i++) {

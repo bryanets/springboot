@@ -37,13 +37,19 @@ public class Matricula {
     
     // Relación ManyToOne con Cursos
     @OneToMany(mappedBy = "matriculaCursos")
+    @JsonIgnore
     private List<Cursos> listaCursos;
+    
     
     @Column(name = "fecha_matricula")
     private LocalDate fechaMatricula;
 
     @OneToMany(mappedBy = "matricula")
+    @JsonIgnore
     private List<Notas> notas;
+    
+    @OneToMany(mappedBy = "matriculaDetalle")
+    private List<DetalleHorario> detalleHorario;
     
 	public Long getIdMatricula() {
 		return idMatricula;
@@ -90,6 +96,14 @@ public class Matricula {
 
 	public void setNotas(List<Notas> notas) {
 		this.notas = notas;
+	}
+
+	public List<DetalleHorario> getDetalleHorario() {
+		return detalleHorario;
+	}
+
+	public void setDetalleHorario(List<DetalleHorario> detalleHorario) {
+		this.detalleHorario = detalleHorario;
 	}
     
 

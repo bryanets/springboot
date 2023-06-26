@@ -60,7 +60,10 @@ public class Cursos implements Serializable{
     @JoinColumn(name="id_matricula")
     @JsonIgnore
     private Matricula matriculaCursos;
-
+    /*
+    @OneToMany(mappedBy = "cursoDetalle")
+    private List<DetalleHorario> detalleHorario;
+*/
 	public Integer getId_curso() {
 		return id_curso;
 	}
@@ -133,7 +136,15 @@ public class Cursos implements Serializable{
 	public void setMatriculaCursos(Matricula matriculaCursos) {
 		this.matriculaCursos = matriculaCursos;
 	}
+/*
+	public List<DetalleHorario> getDetalleHorario() {
+		return detalleHorario;
+	}
 
+	public void setDetalleHorario(List<DetalleHorario> detalleHorario) {
+		this.detalleHorario = detalleHorario;
+	}
+*/
 	
 }
 

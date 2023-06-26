@@ -4,12 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hv.dao.CarreraRepository;
-import com.hv.dao.CursosRepository;
 import com.hv.entity.Carrera;
-import com.hv.entity.Cursos;
+
 
 @Service
 public class CarreraService {

@@ -18,7 +18,7 @@
 				<h5 class="card-header">Datos del alumno</h5>
 				<div class="card-body">
 					<div class="row">
-						<input type="text" class="form-control" id="idCodigo" th:field="*{idUsuario}" hidden>
+						<input type="text" class="form-control" id="idCodigo" th:field="*{idUsuario}" name="usuario">
 						<div class="col-md-6">
 							<label for="idNombre" class="form-label">Nombres</label>
 							<input type="text" class="form-control" id="idNombre" th:field="*{nombre}">
@@ -41,7 +41,7 @@
 						</div>
 						<div class="col-md-6  mt-2">
 							<label for="idCarrera">Carrera</label>
-							<select class="form-control" id="idCarrera" name="rol">
+							<select class="form-control" id="idCarrera" name="carrera">
 								<option value=" ">[Seleccione]</option>
 								<option th:each="row:${carrera}" th:utext="${row.nombreCarrera}"
 									th:value="${row.idCarrera}" />
@@ -162,20 +162,20 @@
 
 		<script>
 			$(document).ready(function () {
-				
+
 				// Capturar el cambio de valor en el select
 				$('#idCarrera').change(function () {
 					var selectedValue = $(this).val(); // Obtener el valor seleccionado
 					let codigo = {value: selectedValue}.value;
 					console.log(codigo);
 					// Realizar una petición al controlador y obtener el JSON
-					$.get('/carrera/buscarPorId?idCarrera=' + codigo, function (response) {
+					$.get('/carrera/buscarPorIdCiclo?idCarrera=' + codigo, function (response) {
 						// Limpiar la tabla antes de llenarla con nuevos datos
-						console.log(response.cursos);
+						console.log(response);
 						$('#tableCursos tbody').empty();
 
 						// Recorrer los datos del JSON y agregar filas a la tabla
-						$.each(response.cursos, function (index, curso) {
+						$.each(response, function (index, curso) {
 							var row = '<tr>' +
 								'<td>' + curso.id_curso + '</td>' +
 								'<td>' + curso.nombreCurso + '</td>' +
@@ -186,15 +186,18 @@
 								'</tr>';
 
 							$('#tableCursos tbody').append(row);
+
 						});
 
 						// Agregar el evento click al botón "ver" dentro de la tabla
 						$('#tableCursos').on('click', '.ver-horarios-button', function () {
 							var codigoCurso = $(this).data('codigo'); // Obtener el código del curso del atributo data-codigo
-
+							console.log("Codigo del curso");
+							console.log(codigoCurso);
 							// Obtener el curso correspondiente utilizando el código
-							var curso = response.cursos.find(curso => curso.id_curso === codigoCurso);
-
+							var curso = response.find(curso => curso.id_curso === codigoCurso);
+							console.log("Cursos");
+							console.log(curso);
 							// Obtener los horarios del curso
 							var horarios = curso.horarios;
 
@@ -219,7 +222,7 @@
 							// Agregar el evento click al botón "agenda" dentro de la tabla de horarios
 							$('#tableHorario').off('click', '.agenda-button').on('click', '.agenda-button', function () {
 								var codigoHorario = $(this).data('codigo'); // Obtener el código del horario del atributo data-codigo
-								console.log(codigoHorario);
+
 								// Obtener el horario correspondiente utilizando el código
 								var horario = horarios.find(horario => horario.idHorario === codigoHorario);
 
@@ -249,12 +252,12 @@
 
 									// Agregar la nueva fila al cuerpo de la tabla
 									$('#tableAgenda tbody').append(newRow);
-									
+
 									newRow = '';
 								}
 								horario = '';
 							});
-							
+
 						});
 					});
 				});

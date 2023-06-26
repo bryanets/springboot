@@ -1,12 +1,16 @@
 package com.hv.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.hv.entity.Carrera;
 import com.hv.entity.Matricula;
 import com.hv.entity.Usuario;
 import com.hv.services.CarreraService;
@@ -45,8 +49,24 @@ public class MatriculaController {
 	
 	
 	@PostMapping("/grabar")
-	public String guardar(Matricula matricula) {
-		matriculaService.registrar(matricula);
+	public String guardar(Usuario usuario, @RequestParam("carrera")int car) {
+		Matricula m = new Matricula();
+		
+		//Usuario usuario = new Usuario();
+		//usuario.setIdUsuario(usu);
+		m.setUsuario(usuario);
+		
+		Carrera c= new Carrera();
+		c.setIdCarrera(car);
+		m.setCarrera(c);
+		m.setFechaMatricula(LocalDate.now());
+		
+		System.out.println("***************************");
+		System.out.println(m.getUsuario().getIdUsuario());
+		System.out.println(m.getCarrera().getIdCarrera());
+		System.out.println(m.getFechaMatricula());
+		
+		matriculaService.registrar(m);
 		return "redirect:/usuario/lista";
 	}
 }

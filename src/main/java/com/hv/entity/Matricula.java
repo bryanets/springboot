@@ -27,6 +27,7 @@ public class Matricula {
     // Relación ManyToOne con Usuario
     @ManyToOne
     @JoinColumn(name = "id_usuario")
+    @JsonIgnore
     private Usuario usuario;
     
     // Relación ManyToOne con Carrera

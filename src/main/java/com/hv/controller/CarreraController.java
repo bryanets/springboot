@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.hv.entity.Carrera;
+import com.hv.entity.Cursos;
 import com.hv.services.CarreraService;
+import com.hv.services.CursoServices;
 
 @Controller
 @RequestMapping("/carrera")
@@ -20,6 +22,8 @@ public class CarreraController {
 
 	@Autowired
 	private CarreraService serCarrera;
+	@Autowired
+	private CursoServices serCurso;
 
 	@GetMapping("/lista")
 	public String index(Model model) {
@@ -54,14 +58,22 @@ public class CarreraController {
 	@RequestMapping("/buscar")
 	@ResponseBody
 	public List<Carrera> buscar() {
-		
+
 		return serCarrera.listarCarreras();
 	}
-	
+
 	@RequestMapping("/buscarPorId")
 	@ResponseBody
-	public Carrera buscar(@RequestParam("idCarrera")int cod) {
-		
+	public Carrera buscar(@RequestParam("idCarrera") int cod) {
+
 		return serCarrera.buscarPorID(cod);
 	}
+
+	@RequestMapping("/buscarPorIdCiclo")
+	@ResponseBody
+	public List<Cursos> buscarPorCarrera(@RequestParam("idCarrera") int cod) {
+
+		return serCurso.buscarPorIDCiclo(cod);
+	}
+
 }

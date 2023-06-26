@@ -71,9 +71,9 @@ public class CarreraController {
 
 	@RequestMapping("/buscarPorIdCiclo")
 	@ResponseBody
-	public List<Cursos> buscarPorCarrera(@RequestParam("idCarrera") int cod) {
+	public List<Cursos> buscarPorCarrera(@RequestParam("idCarrera") int cod,@RequestParam("idCiclo") int ci) {
 
-		return serCurso.buscarPorIDCiclo(cod);
+		return serCurso.buscarPorIDCiclo(cod,ci);
 	}
 
 }

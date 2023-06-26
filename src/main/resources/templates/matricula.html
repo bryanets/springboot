@@ -169,7 +169,7 @@
 					let codigo = {value: selectedValue}.value;
 					console.log(codigo);
 					// Realizar una petición al controlador y obtener el JSON
-					$.get('/carrera/buscarPorIdCiclo?idCarrera=' + codigo, function (response) {
+					$.get('/carrera/buscarPorIdCiclo?idCarrera=' + codigo+"&idCiclo=1", function (response) {
 						// Limpiar la tabla antes de llenarla con nuevos datos
 						console.log(response);
 						$('#tableCursos tbody').empty();

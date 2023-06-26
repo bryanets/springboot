@@ -90,7 +90,7 @@ CREATE TABLE `cursos` (
   CONSTRAINT `cursos_ibfk_1` FOREIGN KEY (`id_carrera`) REFERENCES `carrera` (`id_carrera`) ON DELETE CASCADE,
   CONSTRAINT `cursos_ibfk_2` FOREIGN KEY (`id_profesor`) REFERENCES `profesores` (`id_profesor`) ON DELETE CASCADE,
   CONSTRAINT `cursos_ibkf_3` FOREIGN KEY (`id_matricula`) REFERENCES `matricula` (`id_matricula`)
-) ENGINE=InnoDB AUTO_INCREMENT=172 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=173 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -353,7 +353,7 @@ CREATE TABLE `tb_rol_enlace` (
 
 LOCK TABLES `tb_rol_enlace` WRITE;
 /*!40000 ALTER TABLE `tb_rol_enlace` DISABLE KEYS */;
-INSERT INTO `tb_rol_enlace` VALUES (1,2),(1,3),(1,4),(1,5),(1,6),(1,7);
+INSERT INTO `tb_rol_enlace` VALUES (1,2),(1,3),(2,3),(1,4),(1,5),(1,6),(2,7);
 /*!40000 ALTER TABLE `tb_rol_enlace` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +379,7 @@ CREATE TABLE `usuario` (
   KEY `fk_usuario_rol_idx` (`idrol`),
   KEY `llave_idx` (`idrol`),
   CONSTRAINT `ghgh` FOREIGN KEY (`idrol`) REFERENCES `tb_rol` (`idrol`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +388,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'bryan','trebejo','bryantrebejo@hotmail.com','$2a$10$cKE.Y1BJHk.6Skw53xTbDO8MGdE2woJgQkZJ9GUuDlcynFTIcmh8G',1,'bryan','47586985'),(14,'frank','mendoza','i201821212@cibertec.edu.pe','wqwwqwqwq',2,'frank20','12345678'),(15,'Armando','Scripts','sarmando@cibertec.pe',NULL,4,'armando','85203698'),(16,'benedicto','XIV','papita@hotmail.com','$2a$10$hQUVDh6uWf/ioBfKagMbu.mCNfCdgLsYFPm3SOEZUx7bOSvrYnG/C',2,'papaxiv','58963247'),(17,'nailin','inga salazar','nailin@hotmail.com','$2a$10$lfuOIHaoGQ6nyOkbHR6n3ez2ful3FURb9fDrbzqgOjOisqbh1SumW',2,'nailin','85257896');
+INSERT INTO `usuario` VALUES (1,'bryan','trebejo','bryantrebejo@hotmail.com','$2a$10$cKE.Y1BJHk.6Skw53xTbDO8MGdE2woJgQkZJ9GUuDlcynFTIcmh8G',1,'bryan','47586985'),(14,'frank','mendoza','i201821212@cibertec.edu.pe','wqwwqwqwq',2,'frank20','12345678'),(15,'Armando','Scripts','sarmando@cibertec.pe',NULL,4,'armando','85203698'),(16,'benedicto','XIV','papita@hotmail.com','$2a$10$hQUVDh6uWf/ioBfKagMbu.mCNfCdgLsYFPm3SOEZUx7bOSvrYnG/C',2,'papaxiv','58963247'),(17,'nailin','inga salazar','nailin@hotmail.com','$2a$10$lfuOIHaoGQ6nyOkbHR6n3ez2ful3FURb9fDrbzqgOjOisqbh1SumW',2,'nailin','85257896'),(18,'Carmen','Salinas Carreño','carmen@gmail.com','$2a$10$QyK55qjI3/Mxza0ldIOee.GR0AGhjNuZYlXK7I5AGOmGPL.lG9ASG',3,'carmen','0975687');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,4 +432,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26  2:45:19
+-- Dump completed on 2023-06-26  7:00:12

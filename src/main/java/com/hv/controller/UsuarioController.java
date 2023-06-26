@@ -22,7 +22,7 @@ import com.hv.entity.Usuario;
 import com.hv.services.RolService;
 import com.hv.services.UsuarioServices;
 
-@SessionAttributes({ "datos", "enlaces" })
+@SessionAttributes({ "datos", "enlaces","tipo" })
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -104,8 +104,10 @@ public class UsuarioController {
 		model.addAttribute("enlaces", datos);
 		model.addAttribute("usuario", bean);
 		if(bean.getRol().getCodigo()==1){
+			model.addAttribute("tipo", true);
 			return "redirect:/usuario/lista";
 		}else {
+			model.addAttribute("tipo", false);
 		return "intranet";}
 	}
 

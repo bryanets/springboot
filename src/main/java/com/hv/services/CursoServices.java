@@ -39,8 +39,8 @@ public class CursoServices {
 	}
 	
 
-	public List<Cursos> buscarPorIDCiclo(Integer cod) {
-		return repo.buscarPorIDCiclo(cod);
+	public List<Cursos> buscarPorIDCiclo(Integer cod, Integer ci) {
+		return repo.buscarPorIDCiclo(cod,ci);
 	}
 	
 }

@@ -72,6 +72,8 @@
 						<th class="text-center">Código</th>
 						<th>Nombre</th>
 						<th class="text-center">Créditos</th>
+						<th class="text-center">Carrera</th>
+						<th class="text-center">Profesor</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -79,6 +81,8 @@
 						<td class="text-center" th:text="${data.id_curso}"></td>
 						<td th:text="${data.nombreCurso}"></td>
 						<td class="text-center" th:text="${data.creditos}"></td>
+						<td class="text-center" th:text="${data.carrera.nombreCarrera}"></td>
+						<td class="text-center" th:text="${data.profesor.usuario.nombre}"></td>
 						<td><a class="btn btn-info btn-editar" th:href="@{/curso/editar/}+${data.id_curso}"><i
 									class="far fa-edit"></i></a></td>
 						<td><a class="btn btn-danger btn-eliminar" th:href="@{/curso/eliminar/}+${data.id_curso}"><i
@@ -105,9 +109,14 @@
 
 
 		<div th:insert="plantilla/UITemplate :: javascript"></div>
+		
 		<script>
-			$('#tableCurso').DataTable();
-			
+			$(document).ready(function () {
+				// Tu código o función a ejecutar al iniciar el HTML
+				$("#tableCurso").dataTable();
+
+			});
+
 			$(document).ready(function () {
 				$('.btn-editar').click(function (event) {
 					event.preventDefault(); // Evitar que el enlace se abra en una nueva página

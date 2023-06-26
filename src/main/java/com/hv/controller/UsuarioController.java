@@ -104,7 +104,7 @@ public class UsuarioController {
 		model.addAttribute("enlaces", datos);
 		model.addAttribute("usuario", bean);
 		if(bean.getRol().getCodigo()==1){
-			return "usuario";
+			return "redirect:/usuario/lista";
 		}else {
 		return "intranet";}
 	}

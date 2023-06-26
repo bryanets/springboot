@@ -42,7 +42,7 @@ public class Cursos implements Serializable{
     // Relación ManyToOne con Profesores
     @ManyToOne
     @JoinColumn(name = "id_profesor")
-    @JsonIgnore
+    //@JsonIgnore
     private Profesores profesor;
     
     // Relación OneToMany con CursosCiclo

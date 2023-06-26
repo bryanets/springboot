@@ -36,6 +36,7 @@ public class Carrera implements Serializable {
     
     // Relación OneToMany con Cursos
     @OneToMany(mappedBy = "carrera")
+    //@JsonIgnore
     private List<Cursos> cursos;
 
 	public Integer getIdCarrera() {

@@ -130,6 +130,14 @@
 		<div th:insert="plantilla/UITemplate :: javascript"></div>
 		<script>
 			$(document).ready(function () {
+				// Tu código o función a ejecutar al iniciar el HTML
+				$("#tableHorario").dataTable();
+
+			});
+
+		</script>
+		<script>
+			$(document).ready(function () {
 				$('.btn-editar').click(function (event) {
 					event.preventDefault(); // Evitar que el enlace se abra en una nueva página
 

@@ -69,6 +69,15 @@
 
 
 	<div th:insert="~{plantilla/UITemplate :: javascript}"></div>
+	
+	<script>
+			$(document).ready(function () {
+				// Tu código o función a ejecutar al iniciar el HTML
+				$("#tableMedicamentos").dataTable();
+
+			});
+
+		</script>
 
 	<script th:inline="javascript" th:if="${MENSAJE!=null}">
 		let msj;

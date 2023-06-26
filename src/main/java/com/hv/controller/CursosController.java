@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.hv.entity.Cursos;
 import com.hv.services.CarreraService;
@@ -42,8 +43,9 @@ public class CursosController {
 	}
 
 	@PostMapping("/grabar")
-	public String guardar(Cursos cursos) {
+	public String guardar(Cursos cursos,RedirectAttributes redirect) {
 		serCurso.registrar(cursos);
+		redirect.addFlashAttribute("MENSAJE","Curso registrado");
 		return "redirect:/curso/lista";
 	}
 
@@ -58,8 +60,9 @@ public class CursosController {
 	}
 
 	@GetMapping("/eliminar/{id_curso}")
-	public String eliminar(Cursos cursos) {
+	public String eliminar(Cursos cursos,RedirectAttributes redirect) {
 		serCurso.eliminar(cursos);
+		redirect.addFlashAttribute("MENSAJE","Curso eliminado");
 		return "redirect:/curso/lista";
 	}
 

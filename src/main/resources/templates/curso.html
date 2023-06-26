@@ -72,8 +72,7 @@
 						<th class="text-center">Código</th>
 						<th>Nombre</th>
 						<th class="text-center">Créditos</th>
-						<th class="text-center">Carrera</th>
-						<th class="text-center">Profesor</th>
+
 					</tr>
 				</thead>
 				<tbody>
@@ -81,8 +80,7 @@
 						<td class="text-center" th:text="${data.id_curso}"></td>
 						<td th:text="${data.nombreCurso}"></td>
 						<td class="text-center" th:text="${data.creditos}"></td>
-						<td class="text-center" th:text="${data.carrera.nombreCarrera}"></td>
-						<td class="text-center" th:text="${data.profesor.usuario.nombre}"></td>
+
 						<td class="text-center"><a class="btn btn-info btn-editar"
 								th:href="@{/curso/editar/}+${data.id_curso}"><i class="far fa-edit"></i></a>
 							<a class="btn btn-danger btn-eliminar" th:href="@{/curso/eliminar/}+${data.id_curso}"><i
@@ -110,7 +108,6 @@
 
 
 		<div th:insert="plantilla/UITemplate :: javascript"></div>
-
 		<script>
 
 			$(document).ready(function () {
@@ -118,6 +115,8 @@
 			});
 
 		</script>
+
+		
 		<script th:inline="javascript" th:if="${MENSAJE!=null}">
 			let msj;
 			msj =/*[[${MENSAJE}]]*/
@@ -126,8 +125,6 @@
 					"onclick": null,
 				}
 			toastr.success(msj);
-
-
 		</script>
 		<script>
 			$(document).ready(function () {
